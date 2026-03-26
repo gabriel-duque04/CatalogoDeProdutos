@@ -22,18 +22,59 @@ namespace Domain.Entities
             this._categoriaId = categoriaId;
         }
 
+        //Getters
         public string GetNome { get { return _nome; } }
-        public void SetNome(string nome) { _nome = nome; }
-
         public string GetDescricao { get { return _descricao; } }
-        public void SetDescricao(string descricao) { _descricao = descricao; }
-
         public double GetPreco { get { return _preco; } }
-        public void SetPreco(double preco) { _preco = preco; }
-
         public int GetCategoriaId { get { return _categoriaId; } }
-        public void SetCategoriaId(int categoriaId) { _categoriaId = categoriaId; }
 
+        /// <summary>
+        /// Método de alteração do nome do produto, verifica se o novo nome é nulo, vazio ou excede o número de caracteres do banco de dados
+        /// </summary>
+        /// <param name="novoNome"></param>
+        /// <exception cref="ArgumentException"></exception>
+        public void AlterarNomeProduto(string novoNome)
+        {
+            if (novoNome == null || novoNome == "" || novoNome.Length > 200)
+                throw new ArgumentException("Novo nome para produto inválido");
 
+            this._nome = novoNome;
+
+        }
+        /// <summary>
+        /// Método de alteração da descrição do produto, verifica se o nova descrição é nula, vazia ou excede o número de caracteres do banco de dados
+        /// </summary>
+        /// <param name="novaDescricao"></param>
+        /// <exception cref="ArgumentException"></exception>
+        public void AlterarDescricaoProduto(string novaDescricao)
+        {
+            if (novaDescricao == null || novaDescricao == "" || novaDescricao.Length > 500)
+                throw new ArgumentException("Descrição para produto inválido");
+
+            this._descricao = novaDescricao;
+
+        }
+        /// <summary>
+        /// Método de alteração do preço do produto, verifica se o preço é negativo
+        /// <param name="novoPreco"></param>
+        /// <exception cref="ArgumentException"></exception>
+        public void AlterarPrecoProduto(double novoPreco)
+        {
+            if (novoPreco <= 0)
+                throw new ArgumentException("Preço inválido");
+
+            this._preco = novoPreco;
+        }
+        /// <summary>
+        /// Método de alteração da categoria 
+        /// </summary>
+        /// <param name="novaCategoriaId"></param>
+        /// <exception cref="ArgumentException"></exception>
+        public void AlterarCategoria(int novaCategoriaId)
+        {
+            if (novaCategoriaId < 0) throw new ArgumentException("Categoria inválida");
+
+            this._categoriaId = novaCategoriaId;
+        }
     }
 }
