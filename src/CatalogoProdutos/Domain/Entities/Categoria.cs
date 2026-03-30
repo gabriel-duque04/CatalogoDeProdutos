@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    internal class Categoria
+    public class Categoria
     {
         private readonly int _id;
         private string _nome;
