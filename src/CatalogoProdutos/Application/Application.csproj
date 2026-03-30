@@ -9,9 +9,9 @@
   <ItemGroup>
     <Folder Include="DTOs\Responses\" />
     <Folder Include="DTOs\Requests\" />
-    <Folder Include="Ports\" />
     <Folder Include="UseCases\Categorias\" />
     <Folder Include="UseCases\Produtos\" />
+	 <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
 </Project>
