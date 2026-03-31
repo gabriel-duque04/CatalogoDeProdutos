@@ -8,7 +8,7 @@ using Domain.Entities;
 
 namespace Application.Ports
 {
-    internal interface IProdutoRepository
+    public interface IProdutoRepository
     {
        /// <summary>
        /// Define os contratos para as operações do CRUD dos produtos
