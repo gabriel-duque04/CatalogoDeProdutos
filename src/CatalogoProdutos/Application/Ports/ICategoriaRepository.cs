@@ -7,7 +7,7 @@ using Domain.Entities;
 
 namespace Application.Ports
 {
-    internal interface ICategoriaRepository
+    public interface ICategoriaRepository
     {
         /// <summary>
         /// Define os contratos para as operações do CRUD das categorias
@@ -22,7 +22,7 @@ namespace Application.Ports
 
 
         //Ports para o UPDATE das Categorias
-        Task<Categoria> UpdateCategoriaAsync(int id);
+        Task<Categoria> UpdateCategoriaAsync(int id, Categoria novaCategoria);
 
 
         //Ports para o CREATE das Categorias

@@ -16,6 +16,13 @@ namespace Infrastructure.Repositories
 
         private readonly string _connectionString;
 
+
+
+        /// <summary>
+        /// Construtor do repository, pega a string de conexão e salva em uma variável
+        /// </summary>
+        /// <param name="configuration"></param>
+        /// <exception cref="Exception">Se a string for nula</exception>
         public ProdutoRepository(IConfiguration configuration)
         {
             _connectionString = configuration.GetConnectionString("DefaultConnection");
