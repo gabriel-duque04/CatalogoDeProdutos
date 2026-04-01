@@ -63,23 +63,23 @@ namespace Infrastructure.Repositories
         {
             using var connection = new SqlConnection(_connectionString);
 
-            var sql = $"INSERT INTO Produtos (Nome,Descricao,Preco,CategoriaID)" +
-                $" VALUES('{produto.GetNome}','{produto.GetDescricao}', {produto.GetPreco},{produto.GetCategoriaId})";
+            var sql = $"INSERT INTO Produtos (Nome,Descricao,Preco,CategoriaID) OUTPUT INSERTED.*" +
+                $" VALUES('@Nome','@Descricao', @Preco,@CategoriaId)";
 
-            return await connection.QuerySingleAsync<Produto>(sql);
+            return await connection.QuerySingleAsync<Produto>(sql, new {Nome = produto.GetNome, Descricao = produto.GetDescricao, Preco = produto.GetPreco, CategoriaId = produto.GetCategoriaId});
         }
 
         public async Task<Produto> UpdateProdutoAsync(int id, Produto produtoAtualizado)
         {
             using var connection = new SqlConnection(_connectionString);
 
-            var sql = $"UPDATE Produtos SET Nome = '{produtoAtualizado.GetNome}'," +
-                $"Descricao = '{produtoAtualizado.GetDescricao}'," +
-                $"Preco = {produtoAtualizado.GetPreco}," +
-                $"CategoriaID = {produtoAtualizado.GetCategoriaId} " +
+            var sql = $"UPDATE Produtos SET Nome = '@Nome'," +
+                $"Descricao = '@Descricao'," +
+                $"Preco = @Preco," +
+                $"CategoriaID = @CategoriaId OUTPUT INSERTED.*" +
                 $"WHERE Id = @Id";
 
-            return await connection.QuerySingleAsync<Produto>(sql, new {id});
+            return await connection.QuerySingleAsync<Produto>(sql, new {id, Nome = produtoAtualizado.GetNome, Descricao = produtoAtualizado.GetDescricao, Preco = produtoAtualizado.GetPreco, CategoriaId = produtoAtualizado.GetCategoriaId });
         }
 
 

@@ -56,20 +56,20 @@ namespace Infrastructure.Repositories
             using var connection = new SqlConnection(_connectionString);
 
             var sql = $"UPDATE Categorias" +
-                $" SET Nome = '{novaCategoria.GetNome}', Descricao = '{novaCategoria.GetDescricao}'" +
+                $" SET Nome = '@Nome', Descricao = '@Descricao' OUTPUT INSERTED.* " +
                 $"WHERE Id = @Id";
 
-            return await connection.QuerySingleAsync<Categoria>(sql, new { id });
+            return await connection.QuerySingleAsync<Categoria>(sql, new { id, Nome = novaCategoria.GetNome, Descricao = novaCategoria.GetDescricao});
         }
 
         public async Task<Categoria> CreateCategoriaAsync(Categoria categoria)
         {
             using var connection = new SqlConnection(_connectionString);
 
-            var sql = $"INSERT INTO Categorias (Nome, Descricao)" +
-                $"VALUES('{categoria.GetNome}','{categoria.GetDescricao}')";
+            var sql = $"INSERT INTO Categorias (Nome, Descricao) OUTPUT inserted.*" +
+                $"VALUES('@Nome','@Descricao')";
 
-            return await connection.QuerySingleAsync<Categoria>(sql);
+            return await connection.QuerySingleAsync<Categoria>(sql, new { Nome = categoria.GetNome, Descricao = categoria.GetDescricao });
         }
 
         public async Task<bool> DeleteCategoriaAsync(int id)

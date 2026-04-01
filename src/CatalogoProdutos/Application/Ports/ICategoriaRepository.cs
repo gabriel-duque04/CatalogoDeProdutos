@@ -30,7 +30,7 @@ namespace Application.Ports
 
 
         //Ports para o DELETE das Categorias
-        Task DeleteCategoriaAsync(int id);
+        Task<bool> DeleteCategoriaAsync(int id);
 
         
     }
