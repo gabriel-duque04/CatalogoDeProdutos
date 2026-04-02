@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Domain.Entities;
 
-namespace Application.Ports
+namespace Application.Ports.PortsRepositories
 {
     public interface ICategoriaRepository
     {
