@@ -10,6 +10,6 @@ namespace Application.Ports.PortsUseCases.Categorias
 {
     public interface IDeleteCategoriaUseCase
     {
-        Task<Categoria> ExecutarAsync(int id);
+        Task<bool> ExecutarAsync(int id);
     }
 }

@@ -10,6 +10,6 @@ namespace Application.Ports.PortsUseCases.Categorias
 {
     public interface IUpdateCategoriaUseCase
     {
-        Task<Categoria> ExecutarAsync(CategoriaRequestDTO categoria);
+        Task<Categoria> ExecutarAsync(int id,CategoriaRequestDTO categoria);
     }
 }

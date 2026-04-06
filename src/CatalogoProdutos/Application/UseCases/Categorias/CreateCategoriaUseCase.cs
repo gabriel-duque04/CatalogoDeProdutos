@@ -22,8 +22,19 @@ namespace Application.UseCases.Categorias
 
         public async Task<Categoria> ExecutarAsync(CategoriaRequestDTO categoria)
         {
+
+            //Validações
+            if (String.IsNullOrEmpty(categoria._nome))
+                throw new Exception("Nome da é necessário;");
+
+            if (String.IsNullOrEmpty(categoria._descricao))
+                throw new Exception("Descriçao é necessária");
+
+            //cria a entidade
             Categoria novaCategoria = new Categoria(categoria._nome, categoria._descricao);
 
+
+            //Cria no banco por meio do repository
             return await _categoriaRepository.CreateCategoriaAsync(novaCategoria);
         }
     }

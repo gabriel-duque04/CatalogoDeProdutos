@@ -9,6 +9,6 @@ namespace Application.Ports.PortsUseCases.Produtos
 {
     public interface IDeleteProdutoUseCase
     {
-        Task<Produto> ExecutarAsync(int id);
+        Task<bool> ExecutarAsync(int id);
     }
 }
