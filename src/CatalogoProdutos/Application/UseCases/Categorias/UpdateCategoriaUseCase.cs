@@ -38,6 +38,7 @@ namespace Application.UseCases.Categorias
             //Cria a entidade
             Categoria categoriaAtualizada = new Categoria(categoria._nome, categoria._descricao);
 
+            //Faz a atualização da categoria 
             return await _categoriaRepository.UpdateCategoriaAsync(id, categoriaAtualizada);
 
             

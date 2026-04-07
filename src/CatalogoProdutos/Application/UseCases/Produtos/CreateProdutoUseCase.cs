@@ -38,10 +38,10 @@ namespace Application.UseCases.Produtos
             if (_categoriaRepository.GetCategoriaByIdAsync(produto._categoriaId) == null)
                 throw new Exception("Categoria não existente");
 
-
+            //cria uma nova entidade a partir do dto
             Produto novoProduto = new Produto(produto._nome, produto._descricao, produto._preco, produto._categoriaId);
 
-
+            //cria o produto
             return await _produtoRepository.CreateProdutoAsync(novoProduto);
 
 

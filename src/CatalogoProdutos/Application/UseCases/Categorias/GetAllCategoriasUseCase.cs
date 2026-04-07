@@ -20,6 +20,7 @@ namespace Application.UseCases.Categorias
 
         public async Task<IEnumerable<Categoria>> ExecutarAsync()
         {
+            //get de todas categorias
             return await _categoriaRepository.GetAllCategoriasAsync();
         }
     }

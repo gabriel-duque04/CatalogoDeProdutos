@@ -24,6 +24,7 @@ namespace Application.UseCases.Produtos
             if (existe == null)
                 throw new Exception("Produto inexistente");
 
+            //deleta o produto
             return await _produtoRepository.DeleteProdutosAsync(id);
         }
     }

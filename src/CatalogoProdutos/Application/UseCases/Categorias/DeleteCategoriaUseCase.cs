@@ -28,6 +28,7 @@ namespace Application.UseCases.Categorias
                 throw new Exception("Categoria inexistente");
 
 
+            //deleta do banco por meio dos repositorys
             return await _categoriaRepository.DeleteCategoriaAsync(id);
         }
     }
