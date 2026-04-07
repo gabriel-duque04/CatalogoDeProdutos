@@ -17,7 +17,7 @@ namespace Application.Ports.PortsRepositories
 
         //Portas para o GET dos produtos
         Task<Produto?> GetProdutoByIdAsync(int id);
-        Task<IEnumerable<Produto>> GetProdutosByCategoria(int categoriaId);
+        Task<IEnumerable<Produto>> GetProdutosByCategoriaAsync(int categoriaId);
         Task<IEnumerable<Produto>> GetAllProdutos();
 
 

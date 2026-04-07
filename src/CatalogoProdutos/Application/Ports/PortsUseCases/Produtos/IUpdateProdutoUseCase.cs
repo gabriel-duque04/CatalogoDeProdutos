@@ -10,6 +10,6 @@ namespace Application.Ports.PortsUseCases.Produtos
 {
     public interface IUpdateProdutoUseCase
     {
-        Task<Produto> ExecutarAsync(ProdutoRequestDTO produtoAtualizar);
+        Task<Produto> ExecutarAsync(int id,ProdutoRequestDTO produtoAtualizar);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Application.DTOs.Responses;
+using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace Application.Ports.PortsUseCases.Produtos
 {
     public interface IGetAllProdutosUseCase
     {
-        Task<IEnumerable<ProdutoResponseDTO>> ExecutarAsync();
+        Task<IEnumerable<Produto>> ExecutarAsync();
     }
 }

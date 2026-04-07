@@ -15,6 +15,9 @@ namespace Application.UseCases.Produtos
 
         private readonly IProdutoRepository _produtoRepository;
 
+        private readonly ICategoriaRepository _categoriaRepository;
+
+
         public CreateProdutoUseCase(IProdutoRepository produtoRepository)
         {
             _produtoRepository = produtoRepository;
@@ -29,7 +32,19 @@ namespace Application.UseCases.Produtos
             if (String.IsNullOrEmpty(produto._descricao))
                 throw new Exception("Descriçao é necessária");
 
-            Produto novòProduto = new Produto(produto._nome, produto._descricao, produto._preco, produto._categoriaId);
+            if (produto._preco <= 0)
+                throw new Exception("Preço inválido");
+
+            if (_categoriaRepository.GetCategoriaByIdAsync(produto._categoriaId) == null)
+                throw new Exception("Categoria não existente");
+
+
+            Produto novoProduto = new Produto(produto._nome, produto._descricao, produto._preco, produto._categoriaId);
+
+
+            return await _produtoRepository.CreateProdutoAsync(novoProduto);
+
+
 
         }
     }
