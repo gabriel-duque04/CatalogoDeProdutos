@@ -1,4 +1,4 @@
-﻿using Application.Ports;
+﻿using Application.Ports.PortsRepositories;
 using Dapper;
 using Domain.Entities;
 using Microsoft.Data.SqlClient;
@@ -41,7 +41,7 @@ namespace Infrastructure.Repositories
             return await connection.QuerySingleAsync<Produto>(sql, new { id });
         }
 
-        public async Task<IEnumerable<Produto>> GetProdutosByCategoria(int categoriaId)
+        public async Task<IEnumerable<Produto>> GetProdutosByCategoriaAsync(int categoriaId)
         {
             using var connection = new SqlConnection(_connectionString);
 

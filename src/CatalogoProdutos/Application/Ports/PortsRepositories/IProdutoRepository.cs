@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Domain.Entities;
 
 
-namespace Application.Ports
+namespace Application.Ports.PortsRepositories
 {
     public interface IProdutoRepository
     {
@@ -17,7 +17,7 @@ namespace Application.Ports
 
         //Portas para o GET dos produtos
         Task<Produto?> GetProdutoByIdAsync(int id);
-        Task<IEnumerable<Produto>> GetProdutosByCategoria(int categoriaId);
+        Task<IEnumerable<Produto>> GetProdutosByCategoriaAsync(int categoriaId);
         Task<IEnumerable<Produto>> GetAllProdutos();
 
 
