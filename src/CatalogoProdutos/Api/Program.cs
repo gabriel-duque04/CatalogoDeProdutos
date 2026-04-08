@@ -1,3 +1,10 @@
+using Application.Ports;
+using Application.Ports.PortsRepositories;
+using Application.Ports.PortsUseCases.Produtos;
+using Domain.Entities;
+using Infrastructure.Repositories;
+using Application.UseCases.Categorias;
+using Application.UseCases.Produtos;
 namespace Api
 {
     public class Program
@@ -5,10 +12,22 @@ namespace Api
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
-            // Add services to the container.
-            builder.Services.AddRazorPages();
-
+            
+            //----------------------Injeção das dependencias 
+            
+            //Repositories
+            builder.Services.AddScoped<ICategoriaRepository, CategoriaRepository>();
+            builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
+            
+            //Use cases produtos
+            builder.Services.AddScoped<ICreateProdutoUseCase, CreateProdutoUseCase>();
+            builder.Services.AddScoped<IDeleteProdutoUseCase, DeleteProdutoUseCase>();
+            builder.Services.AddScoped<IUpdateProdutoUseCase, UpdateProdutoUseCase>();
+            builder.Services.AddScoped<IGetAllProdutosUseCase, GetAllProdutosUseCase>();
+            builder.Services.AddScoped<IGetProdutoByIdUseCase, GetProdutoByIdUseCase>();
+            builder.Services.AddScoped<IGetProdutosByCategoriaUseCase, GetProdutosByCategoriaUseCase>();
+            
+            //---------------------------------------------
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

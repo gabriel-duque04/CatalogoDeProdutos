@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories
 {
-    internal class CategoriaRepository : ICategoriaRepository
+    public class CategoriaRepository : ICategoriaRepository
     {
         private readonly string _connectionString;
 
