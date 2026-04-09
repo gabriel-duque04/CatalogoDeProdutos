@@ -5,6 +5,7 @@ using Domain.Entities;
 using Infrastructure.Repositories;
 using Application.UseCases.Categorias;
 using Application.UseCases.Produtos;
+using Application.Ports.PortsUseCases.Categorias;
 namespace Api
 {
     public class Program
@@ -26,6 +27,14 @@ namespace Api
             builder.Services.AddScoped<IGetAllProdutosUseCase, GetAllProdutosUseCase>();
             builder.Services.AddScoped<IGetProdutoByIdUseCase, GetProdutoByIdUseCase>();
             builder.Services.AddScoped<IGetProdutosByCategoriaUseCase, GetProdutosByCategoriaUseCase>();
+
+            //Use cases categorias
+            builder.Services.AddScoped<ICreateCategoriaUseCase, CreateCategoriaUseCase>();
+            builder.Services.AddScoped<IDeleteCategoriaUseCase, DeleteCategoriaUseCase>();
+            builder.Services.AddScoped<IUpdateCategoriaUseCase, UpdateCategoriaUseCase>();
+            builder.Services.AddScoped<IGetAllCategoriasUseCase, GetAllCategoriasUseCase>();
+            builder.Services.AddScoped<IGetCategoriaByIdUseCase, GetCategoriaByIdUseCase>();
+
             
             //---------------------------------------------
             var app = builder.Build();
