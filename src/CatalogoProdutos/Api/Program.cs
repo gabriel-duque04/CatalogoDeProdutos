@@ -58,6 +58,8 @@ namespace Api
                 app.UseSwaggerUI();
             }
 
+            app.MapControllers();
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
