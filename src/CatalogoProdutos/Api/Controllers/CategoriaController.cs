@@ -47,7 +47,9 @@ namespace Api.Controllers
         {
             var categoriaCriada = await _createCategoriaUseCase.ExecutarAsync(novaCategoria);
 
+            if(categoriaCriada == null) { return BadRequest("Objeto nulo"); }
+
             return Ok(categoriaCriada);
         }
-    }
+    }-
 }

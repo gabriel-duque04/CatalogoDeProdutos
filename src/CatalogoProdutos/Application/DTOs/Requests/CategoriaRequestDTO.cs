@@ -11,10 +11,5 @@ namespace Application.DTOs.Requests
         public string Nome {  get; set; }
         public string Descricao { get; set; }
 
-        public CategoriaRequestDTO(string nome, string descricao)
-        {
-            this.Nome = nome;
-            this.Descricao = descricao;
-        }
     }
 }

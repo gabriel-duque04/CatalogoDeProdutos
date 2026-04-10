@@ -55,9 +55,7 @@ namespace Infrastructure.Repositories
         {
             using var connection = new SqlConnection(_connectionString);
 
-            var sql = $"UPDATE Categorias" +
-                $" SET Nome = '@Nome', Descricao = '@Descricao' OUTPUT INSERTED.* " +
-                $"WHERE Id = @Id";
+            var sql = "UPDATE Categorias  SET Nome = @Nome, Descricao = @Descricao OUTPUT INSERTED.*  WHERE Id = @Id";
 
             return await connection.QuerySingleAsync<Categoria>(sql, new { id, Nome = novaCategoria.Nome, Descricao = novaCategoria.Descricao});
         }
@@ -66,8 +64,7 @@ namespace Infrastructure.Repositories
         {
             using var connection = new SqlConnection(_connectionString);
 
-            var sql = $"INSERT INTO Categorias (Nome, Descricao) OUTPUT inserted.*" +
-                $"VALUES('@Nome','@Descricao')";
+            var sql = "INSERT INTO Categorias (Nome, Descricao) OUTPUT inserted.* VALUES(@Nome,@Descricao)";
 
             return await connection.QuerySingleAsync<Categoria>(sql, new { Nome = categoria.Nome, Descricao = categoria.Descricao });
         }
@@ -76,7 +73,7 @@ namespace Infrastructure.Repositories
         {
             using var connection = new SqlConnection(_connectionString);
 
-            var sql = $"DELETE FROM Categorias WHERE Id = @Id";
+            var sql = "DELETE FROM Categorias WHERE Id = @Id";
 
             return await connection.QuerySingleAsync<bool>(sql, new { id });
         }
