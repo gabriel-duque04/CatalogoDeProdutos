@@ -24,14 +24,14 @@ namespace Application.UseCases.Categorias
         {
 
             //Validações
-            if (String.IsNullOrEmpty(categoria._nome))
+            if (String.IsNullOrEmpty(categoria.Nome))
                 throw new Exception("Nome da é necessário;");
 
-            if (String.IsNullOrEmpty(categoria._descricao))
+            if (String.IsNullOrEmpty(categoria.Descricao))
                 throw new Exception("Descriçao é necessária");
 
             //cria a entidade
-            Categoria novaCategoria = new Categoria(categoria._nome, categoria._descricao);
+            Categoria novaCategoria = new Categoria(categoria.Nome, categoria.Descricao);
 
 
             //Cria no banco por meio do repository

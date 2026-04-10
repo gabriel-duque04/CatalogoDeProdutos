@@ -27,20 +27,20 @@ namespace Application.UseCases.Produtos
         public async Task<Produto> ExecutarAsync(ProdutoRequestDTO produto)
         {
             //Validações
-            if (String.IsNullOrEmpty(produto._nome))
+            if (String.IsNullOrEmpty(produto.Nome))
                 throw new Exception("Nome é necessário;");
 
-            if (String.IsNullOrEmpty(produto._descricao))
+            if (String.IsNullOrEmpty(produto.Descricao))
                 throw new Exception("Descriçao é necessária");
 
-            if (produto._preco <= 0)
+            if (produto.Preco <= 0)
                 throw new Exception("Preço inválido");
 
-            if (_categoriaRepository.GetCategoriaByIdAsync(produto._categoriaId) == null)
+            if (_categoriaRepository.GetCategoriaByIdAsync(produto.CategoriaID) == null)
                 throw new Exception("Categoria não existente");
 
             //cria uma nova entidade a partir do dto
-            Produto novoProduto = new Produto(produto._nome, produto._descricao, produto._preco, produto._categoriaId);
+            Produto novoProduto = new Produto(produto.Nome, produto.Descricao, produto.Preco, produto.CategoriaID);
 
             //cria o produto
             return await _produtoRepository.CreateProdutoAsync(novoProduto);

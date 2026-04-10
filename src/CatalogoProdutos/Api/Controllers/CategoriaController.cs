@@ -30,13 +30,24 @@ namespace Api.Controllers
             _getCategoriaByIdUseCase = getCategoriaByIdUseCase;
         }
 
-
+        /// <summary>
+        /// Get de todas as categorias
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> GetAllCategorias()
         {
             var categorias = await _getAllCategoriasUseCase.ExecutarAsync();
 
             return Ok(categorias);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateCategoria([FromBody] CategoriaRequestDTO novaCategoria)
+        {
+            var categoriaCriada = await _createCategoriaUseCase.ExecutarAsync(novaCategoria);
+
+            return Ok(categoriaCriada);
         }
     }
 }

@@ -8,18 +8,18 @@ namespace Application.DTOs.Responses
 {
     public class ProdutoResponseDTO
     {
-        public string _nome { get; }
-        public string _descricao { get; }
-        public decimal _preco { get; }
-        public int _categoriaId { get; }
-        public bool _ativo { get; }
+        public string Nome { get; }
+        public string Descricao { get; }
+        public decimal Preco { get; }
+        public int CategoriaID { get; }
+        public bool Ativo { get; }
 
         public ProdutoResponseDTO(string nome, string descricao, decimal preco, int categoriaId)
         {
-            this._nome = nome;
-            this._descricao = descricao;
-            this._preco = preco;
-            this._categoriaId = categoriaId;
+            this.Nome = nome;
+            this.Descricao = descricao;
+            this.Preco = preco;
+            this.CategoriaID = categoriaId;
         }
     }
 }
