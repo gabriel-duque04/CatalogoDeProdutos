@@ -66,7 +66,7 @@ namespace Infrastructure.Repositories
             var sql = $"INSERT INTO Produtos (Nome,Descricao,Preco,CategoriaID) OUTPUT INSERTED.*" +
                 $" VALUES('@Nome','@Descricao', @Preco,@CategoriaId)";
 
-            return await connection.QuerySingleAsync<Produto>(sql, new {Nome = produto.GetNome, Descricao = produto.GetDescricao, Preco = produto.GetPreco, CategoriaId = produto.GetCategoriaId});
+            return await connection.QuerySingleAsync<Produto>(sql, new {Nome = produto.Nome, Descricao = produto.Descricao, Preco = produto.Preco, CategoriaId = produto.CategoriaID});
         }
 
         public async Task<Produto> UpdateProdutoAsync(int id, Produto produtoAtualizado)
@@ -79,7 +79,7 @@ namespace Infrastructure.Repositories
                 $"CategoriaID = @CategoriaId OUTPUT INSERTED.*" +
                 $"WHERE Id = @Id";
 
-            return await connection.QuerySingleAsync<Produto>(sql, new {id, Nome = produtoAtualizado.GetNome, Descricao = produtoAtualizado.GetDescricao, Preco = produtoAtualizado.GetPreco, CategoriaId = produtoAtualizado.GetCategoriaId });
+            return await connection.QuerySingleAsync<Produto>(sql, new {id, Nome = produtoAtualizado.Nome, Descricao = produtoAtualizado.Descricao, Preco = produtoAtualizado.Preco, CategoriaId = produtoAtualizado.CategoriaID });
         }
 
 

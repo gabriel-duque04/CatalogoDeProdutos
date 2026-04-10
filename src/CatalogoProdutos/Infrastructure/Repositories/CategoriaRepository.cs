@@ -59,7 +59,7 @@ namespace Infrastructure.Repositories
                 $" SET Nome = '@Nome', Descricao = '@Descricao' OUTPUT INSERTED.* " +
                 $"WHERE Id = @Id";
 
-            return await connection.QuerySingleAsync<Categoria>(sql, new { id, Nome = novaCategoria.GetNome, Descricao = novaCategoria.GetDescricao});
+            return await connection.QuerySingleAsync<Categoria>(sql, new { id, Nome = novaCategoria.Nome, Descricao = novaCategoria.Descricao});
         }
 
         public async Task<Categoria> CreateCategoriaAsync(Categoria categoria)
@@ -69,7 +69,7 @@ namespace Infrastructure.Repositories
             var sql = $"INSERT INTO Categorias (Nome, Descricao) OUTPUT inserted.*" +
                 $"VALUES('@Nome','@Descricao')";
 
-            return await connection.QuerySingleAsync<Categoria>(sql, new { Nome = categoria.GetNome, Descricao = categoria.GetDescricao });
+            return await connection.QuerySingleAsync<Categoria>(sql, new { Nome = categoria.Nome, Descricao = categoria.Descricao });
         }
 
         public async Task<bool> DeleteCategoriaAsync(int id)

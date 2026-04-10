@@ -15,9 +15,10 @@ namespace Application.UseCases.Produtos
         private readonly IProdutoRepository _produtoRepository;
         private readonly ICategoriaRepository _categoriaRepository;
 
-        public UpdateProdutoUseCase(IProdutoRepository produtoRepository)
+        public UpdateProdutoUseCase(IProdutoRepository produtoRepository, ICategoriaRepository categoriaRepository)
         {
             _produtoRepository = produtoRepository;
+            _categoriaRepository = categoriaRepository;
         }
 
         public async Task<Produto> ExecutarAsync(int id, ProdutoRequestDTO produtoAtualizar)

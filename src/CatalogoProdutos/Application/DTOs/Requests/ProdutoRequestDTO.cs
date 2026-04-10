@@ -10,10 +10,10 @@ namespace Application.DTOs.Requests
     {
         public string _nome { get; set; }
         public string _descricao { get; set; }
-        public double _preco { get; set; }
+        public decimal _preco { get; set; }
         public int _categoriaId { get; set; }
 
-        public ProdutoRequestDTO(string nome, string descricao, double preco, int categoriaId)
+        public ProdutoRequestDTO(string nome, string descricao, decimal preco, int categoriaId)
         {
             this._nome = nome;
             this._descricao = descricao;

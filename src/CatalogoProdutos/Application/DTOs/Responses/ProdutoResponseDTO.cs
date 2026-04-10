@@ -10,11 +10,11 @@ namespace Application.DTOs.Responses
     {
         public string _nome { get; }
         public string _descricao { get; }
-        public double _preco { get; }
+        public decimal _preco { get; }
         public int _categoriaId { get; }
         public bool _ativo { get; }
 
-        public ProdutoResponseDTO(string nome, string descricao, double preco, int categoriaId)
+        public ProdutoResponseDTO(string nome, string descricao, decimal preco, int categoriaId)
         {
             this._nome = nome;
             this._descricao = descricao;

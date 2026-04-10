@@ -18,9 +18,10 @@ namespace Application.UseCases.Produtos
         private readonly ICategoriaRepository _categoriaRepository;
 
 
-        public CreateProdutoUseCase(IProdutoRepository produtoRepository)
+        public CreateProdutoUseCase(IProdutoRepository produtoRepository, ICategoriaRepository categoriaRepository)
         {
             _produtoRepository = produtoRepository;
+            _categoriaRepository = categoriaRepository;
         }
 
         public async Task<Produto> ExecutarAsync(ProdutoRequestDTO produto)
