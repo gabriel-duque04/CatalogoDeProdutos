@@ -1,5 +1,6 @@
 ﻿using Application.DTOs.Requests;
 using Application.Ports.PortsRepositories;
+using Application.Ports.PortsUseCases.Categorias;
 using Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Application.UseCases.Categorias
 {
-    public class UpdateCategoriaUseCase
+    public class UpdateCategoriaUseCase : IUpdateCategoriaUseCase
     {
         private readonly ICategoriaRepository _categoriaRepository;
 
