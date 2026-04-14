@@ -36,7 +36,9 @@ namespace Application.UseCases.Produtos
             if (produto.Preco <= 0)
                 throw new Exception("Preço inválido");
 
-            if (_categoriaRepository.GetCategoriaByIdAsync(produto.CategoriaID) == null)
+
+           
+            if (await _categoriaRepository.GetCategoriaByIdAsync(produto.CategoriaID) == null)
                 throw new Exception("Categoria não existente");
 
             //cria uma nova entidade a partir do dto

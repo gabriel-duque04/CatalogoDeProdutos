@@ -11,19 +11,19 @@ namespace Api.Controllers
     [Route("api/[controller]")]
     public class ProdutoController : ControllerBase
     {
-        private readonly CreateProdutoUseCase _createProdutoUseCase;
-        private readonly DeleteProdutoUseCase _deleteProdutoUseCase;
-        private readonly GetAllProdutosUseCase _getAllProdutosUseCase;
-        private readonly GetProdutoByIdUseCase _getProdutoByIdUseCase;
-        private readonly GetProdutosByCategoriaUseCase _getProdutosByCategoriaUseCase;
-        private readonly UpdateProdutoUseCase _updateProdutoUseCase;
+        private readonly ICreateProdutoUseCase _createProdutoUseCase;
+        private readonly IDeleteProdutoUseCase _deleteProdutoUseCase;
+        private readonly IGetAllProdutosUseCase _getAllProdutosUseCase;
+        private readonly IGetProdutoByIdUseCase _getProdutoByIdUseCase;
+        private readonly IGetProdutosByCategoriaUseCase _getProdutosByCategoriaUseCase;
+        private readonly IUpdateProdutoUseCase _updateProdutoUseCase;
 
-        public ProdutoController(CreateProdutoUseCase createProdutoUseCase,
-             DeleteProdutoUseCase deleteProdutoUseCase,
-             GetAllProdutosUseCase getAllProdutosUseCase,
-             GetProdutoByIdUseCase getProdutoByIdUseCase,
-             GetProdutosByCategoriaUseCase getProdutosByCategoriaUseCase,
-             UpdateProdutoUseCase updateProdutoUseCase)
+        public ProdutoController(ICreateProdutoUseCase createProdutoUseCase,
+             IDeleteProdutoUseCase deleteProdutoUseCase,
+             IGetAllProdutosUseCase getAllProdutosUseCase,
+             IGetProdutoByIdUseCase getProdutoByIdUseCase,
+             IGetProdutosByCategoriaUseCase getProdutosByCategoriaUseCase,
+             IUpdateProdutoUseCase updateProdutoUseCase)
         {
             this._createProdutoUseCase = createProdutoUseCase;
             this._deleteProdutoUseCase = deleteProdutoUseCase;
@@ -31,7 +31,40 @@ namespace Api.Controllers
             this._getProdutoByIdUseCase = getProdutoByIdUseCase;
             this._getProdutosByCategoriaUseCase = getProdutosByCategoriaUseCase;
             this._updateProdutoUseCase = updateProdutoUseCase;
-
         }
+
+        /// <summary>
+        /// Post de produtos
+        /// </summary>
+        /// <param name="produto"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<IActionResult> CreateProdutoUseCase(ProdutoRequestDTO produto)
+        {
+            try 
+            {
+                var produtoCriado = await _createProdutoUseCase.ExecutarAsync(produto);
+
+                if (produtoCriado == null)
+                    return BadRequest("Objeto nulo");
+
+                return Ok(produtoCriado);
+            }catch (Exception ex)
+            {
+                if (ex.Message == "Nome é necessário")
+                    return BadRequest(ex.Message);
+                if (ex.Message == "Descriçao é necessária")
+                    return BadRequest(ex.Message);
+                if (ex.Message == "Preço inválido")
+                    return BadRequest(ex.Message);
+                if (ex.Message == "Categoria não existente")
+                    return BadRequest(ex.Message);
+
+                return BadRequest(ex.Message);
+            }
+            
+        }
+
+        
     }
 }
