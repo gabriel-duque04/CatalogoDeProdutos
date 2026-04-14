@@ -43,7 +43,11 @@ namespace Api.Controllers
         }
 
 
-
+        /// <summary>
+        /// Get das categorias pelo id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCategoriaById(int id)
         {
@@ -53,6 +57,17 @@ namespace Api.Controllers
                 return BadRequest("Categoria não encontrada");
 
             return Ok(categoria);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteCategoria(int id)
+        {
+            var foiDeletado = await _deleteCategoriaUseCase.ExecutarAsync(id);
+
+            if (!foiDeletado)
+                return NotFound("Categoria não encontrada");
+            else 
+                return NoContent();
         }
 
         /// <summary>

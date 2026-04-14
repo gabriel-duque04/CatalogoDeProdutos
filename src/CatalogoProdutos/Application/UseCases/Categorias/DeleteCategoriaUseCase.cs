@@ -22,13 +22,6 @@ namespace Application.UseCases.Categorias
 
         public async Task<bool> ExecutarAsync(int id)
         {
-            //Validações
-            var existe = _categoriaRepository.GetCategoriaByIdAsync(id);
-            if (existe == null)
-                throw new Exception("Categoria inexistente");
-
-
-            //deleta do banco por meio dos repositorys
             return await _categoriaRepository.DeleteCategoriaAsync(id);
         }
     }

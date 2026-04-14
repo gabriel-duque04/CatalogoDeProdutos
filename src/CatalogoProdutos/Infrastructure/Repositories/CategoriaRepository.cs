@@ -48,7 +48,7 @@ namespace Infrastructure.Repositories
 
             var sql = "SELECT * FROM Categorias WHERE Id = @Id";
 
-            return await connection.QuerySingleAsync<Categoria>(sql, new { id });
+            return await connection.QueryFirstOrDefaultAsync<Categoria>(sql, new { id });
         }
 
         public async Task<Categoria> UpdateCategoriaAsync(int id, Categoria novaCategoria)
@@ -75,7 +75,9 @@ namespace Infrastructure.Repositories
 
             var sql = "DELETE FROM Categorias WHERE Id = @Id";
 
-            return await connection.QuerySingleAsync<bool>(sql, new { id });
+            var resultado = await connection.ExecuteAsync(sql, new { Id = id });
+
+            return (resultado > 0);
         }
     }
 }
