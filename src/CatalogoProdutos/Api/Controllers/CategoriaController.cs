@@ -42,6 +42,24 @@ namespace Api.Controllers
             return Ok(categorias);
         }
 
+
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetCategoriaById(int id)
+        {
+            var categoria = _getCategoriaByIdUseCase.ExecutarAsync(id);
+
+            if (categoria == null)
+                return BadRequest("Categoria não encontrada");
+
+            return Ok(categoria);
+        }
+
+        /// <summary>
+        /// Post de categoria
+        /// </summary>
+        /// <param name="novaCategoria"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> CreateCategoria([FromBody] CategoriaRequestDTO novaCategoria)
         {
@@ -51,5 +69,5 @@ namespace Api.Controllers
 
             return Ok(categoriaCriada);
         }
-    }-
+    }
 }
