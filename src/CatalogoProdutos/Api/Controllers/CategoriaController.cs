@@ -79,7 +79,7 @@ namespace Api.Controllers
         /// <summary>
         /// Post de categoria
         /// </summary>
-        /// <param name="novaCategoria"></param>
+        /// <param name="novaCategoria">Categoria a ser criada</param>
         /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> CreateCategoria([FromBody] CategoriaRequestDTO novaCategoria)
@@ -91,6 +91,12 @@ namespace Api.Controllers
             return Ok(categoriaCriada);
         }
 
+        /// <summary>
+        /// Método para atualizar as categorias
+        /// </summary>
+        /// <param name="id">id da categoria a ser atualizada</param>
+        /// <param name="categoriaAtualizada">Objeto com os novos dados</param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateCategoria(int id, [FromBody] CategoriaRequestDTO categoriaAtualizada)
         {
