@@ -59,6 +59,12 @@ namespace Api.Controllers
             return Ok(categoria);
         }
 
+
+        /// <summary>
+        /// Delete da categoria pelo id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCategoria(int id)
         {
@@ -83,6 +89,19 @@ namespace Api.Controllers
             if(categoriaCriada == null) { return BadRequest("Objeto nulo"); }
 
             return Ok(categoriaCriada);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateCategoria(int id, [FromBody] CategoriaRequestDTO categoriaAtualizada)
+        {
+            var posAtualizacao = await _updateCategoriaUseCase.ExecutarAsync(id, categoriaAtualizada);
+
+            if(posAtualizacao == null)
+            {
+                return BadRequest("Categoria não encontrada");
+            }
+
+            return Ok(posAtualizacao);
         }
     }
 }

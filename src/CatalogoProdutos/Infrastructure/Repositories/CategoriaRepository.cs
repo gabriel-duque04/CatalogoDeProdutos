@@ -57,7 +57,7 @@ namespace Infrastructure.Repositories
 
             var sql = "UPDATE Categorias  SET Nome = @Nome, Descricao = @Descricao OUTPUT INSERTED.*  WHERE Id = @Id";
 
-            return await connection.QuerySingleAsync<Categoria>(sql, new { id, Nome = novaCategoria.Nome, Descricao = novaCategoria.Descricao});
+            return await connection.QueryFirstOrDefaultAsync<Categoria>(sql, new { Id = id, Nome = novaCategoria.Nome, Descricao = novaCategoria.Descricao });
         }
 
         public async Task<Categoria> CreateCategoriaAsync(Categoria categoria)
