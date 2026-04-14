@@ -47,7 +47,7 @@ namespace Api.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCategoriaById(int id)
         {
-            var categoria = _getCategoriaByIdUseCase.ExecutarAsync(id);
+            var categoria = await _getCategoriaByIdUseCase.ExecutarAsync(id);
 
             if (categoria == null)
                 return BadRequest("Categoria não encontrada");
