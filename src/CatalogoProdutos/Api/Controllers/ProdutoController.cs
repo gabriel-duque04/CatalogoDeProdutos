@@ -1,9 +1,5 @@
 ﻿using Application.DTOs.Requests;
-using Application.DTOs.Responses;
-using Application.Ports.PortsUseCases;
 using Application.Ports.PortsUseCases.Produtos;
-using Application.UseCases.Categorias;
-using Application.UseCases.Produtos;
 using Microsoft.AspNetCore.Mvc;
 namespace Api.Controllers
 {

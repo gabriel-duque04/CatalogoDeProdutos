@@ -1,9 +1,5 @@
 ﻿using Application.DTOs.Requests;
-using Application.DTOs.Responses;
-using Application.Ports.PortsRepositories;
-using Application.Ports.PortsUseCases;
 using Application.Ports.PortsUseCases.Categorias;
-using Application.UseCases.Categorias;
 using Microsoft.AspNetCore.Mvc;
 namespace Api.Controllers
 {
