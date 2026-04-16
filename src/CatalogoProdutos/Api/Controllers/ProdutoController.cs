@@ -60,6 +60,12 @@ namespace Api.Controllers
             }
         }
 
+        
+        /// <summary>
+        /// Método deleta produto por id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduto(int id)
         {
@@ -72,6 +78,27 @@ namespace Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        
+        /// <summary>
+        /// Método de get para todos produtos
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<IActionResult> GetAllProdutos()
+        {
+            try
+            {
+                return Ok(await _getAllProdutosUseCase.ExecutarAsync());
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+        
+        
+        
 
         
     }
