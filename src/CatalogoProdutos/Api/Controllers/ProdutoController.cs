@@ -116,6 +116,25 @@ namespace Api.Controllers
             }
         }
         
+        
+        /// <summary>
+        /// Get de produtos pelo id da categoria
+        /// </summary>
+        /// <param name="categoriaId"></param>
+        /// <returns></returns>
+        [HttpGet("porCategoria/{categoriaId}")]
+        public async Task<IActionResult> GetProdutosByCategoria(int categoriaId)
+        {
+            try
+            {
+                return Ok(await _getProdutosByCategoriaUseCase.ExecutarAsync(categoriaId));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+        
 
         
     }
