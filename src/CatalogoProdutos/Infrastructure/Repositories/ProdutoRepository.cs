@@ -77,7 +77,7 @@ namespace Infrastructure.Repositories
 
             var sql = "UPDATE Produtos SET Nome = @Nome, Descricao = @Descricao,Preco = @Preco, CategoriaID = @CategoriaId OUTPUT INSERTED.* WHERE Id = @Id";
 
-            return await connection.QuerySingleAsync<Produto>(sql, new {id, Nome = produtoAtualizado.Nome,
+            return await connection.QueryFirstOrDefaultAsync<Produto>(sql, new {id, Nome = produtoAtualizado.Nome,
                 Descricao = produtoAtualizado.Descricao,
                 Preco = produtoAtualizado.Preco,
                 CategoriaId = produtoAtualizado.CategoriaID });

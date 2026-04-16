@@ -47,15 +47,6 @@ namespace Api.Controllers
                 return Ok(produtoCriado);
             }catch (Exception ex)
             {
-                if (ex.Message == "Nome é necessário")
-                    return BadRequest(ex.Message);
-                if (ex.Message == "Descriçao é necessária")
-                    return BadRequest(ex.Message);
-                if (ex.Message == "Preço inválido")
-                    return BadRequest(ex.Message);
-                if (ex.Message == "Categoria não existente")
-                    return BadRequest(ex.Message);
-
                 return BadRequest(ex.Message);
             }
         }
@@ -135,7 +126,25 @@ namespace Api.Controllers
             }
         }
         
-
+        
+        /// <summary>
+        /// Método de update para produto por id
+        /// </summary>
+        /// <param name="id">id do produto a ser atualizado</param>
+        /// <param name="produtoAtualizar">produto com dados novos</param>
+        /// <returns></returns>
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateProduto(int id, ProdutoRequestDTO produtoAtualizar)
+        {
+            try
+            {
+                return Ok(await _updateProdutoUseCase.ExecutarAsync(id, produtoAtualizar));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
         
     }
 }

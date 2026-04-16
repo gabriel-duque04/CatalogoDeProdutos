@@ -25,7 +25,7 @@ namespace Application.UseCases.Produtos
         {
 
             //validações
-            if (_produtoRepository.GetProdutoByIdAsync(id) == null)
+            if (await _produtoRepository.GetProdutoByIdAsync(id) == null)
                 throw new Exception("Produto inexistente");
 
             if (String.IsNullOrEmpty(produtoAtualizar.Nome))
@@ -37,7 +37,7 @@ namespace Application.UseCases.Produtos
             if (produtoAtualizar.Preco <= 0)
                 throw new Exception("Preço inválido");
 
-            if (_categoriaRepository.GetCategoriaByIdAsync(produtoAtualizar.CategoriaID) == null)
+            if (await _categoriaRepository.GetCategoriaByIdAsync(produtoAtualizar.CategoriaID) == null)
                 throw new Exception("Categoria não existente");
 
             Produto produto = new Produto(produtoAtualizar.Nome, produtoAtualizar.Descricao, produtoAtualizar.Preco, produtoAtualizar.CategoriaID);
