@@ -8,20 +8,25 @@ namespace Domain.Entities
 {
     public class Categoria
     {
-        private readonly int _id;
-        private string _nome;
-        private string _descricao;
+        public  int Id { get; private set; }
+        public string Nome {get; private set;}
+        public string Descricao {get; private set;}
+        public DateTime DataCriacao {get; private set;}
 
+
+        //Construtor padrão da entidade
         public Categoria(string nome, string descricao)
         {
-            this._nome = nome;
-            this._descricao = descricao;
+            this.Nome = nome;
+            this.Descricao = descricao;
+            this.DataCriacao = DateTime.Now;
         }
 
-        //Getters
-        public string GetNome {  get { return _nome; } }
+        //Construtor usado pelo dapper
+        protected Categoria() {}
 
-        public string GetDescricao {  get { return _descricao; } }
+        //Getters
+       
 
 
         /// <summary>
@@ -34,7 +39,7 @@ namespace Domain.Entities
             if (novoNome == null || novoNome == "" || novoNome.Length > 200) 
                 throw new ArgumentException("Novo nome para categoria inválido");
 
-            this._nome = novoNome;
+            this.Nome = novoNome;
 
         }
 
@@ -48,7 +53,7 @@ namespace Domain.Entities
             if (novaDescricao == null || novaDescricao == "" || novaDescricao.Length > 500)
                 throw new ArgumentException("Descrição para categoria inválido");
 
-            this._descricao = novaDescricao;
+            this.Descricao = novaDescricao;
 
         }
 

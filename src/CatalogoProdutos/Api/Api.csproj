@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="Middlewares\" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="10.1.7" />
     <ProjectReference Include="..\Application/Application.csproj" />

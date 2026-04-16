@@ -24,10 +24,10 @@ namespace Application.UseCases.Categorias
 
 
             //Validações
-            if (String.IsNullOrEmpty(categoria._nome))
+            if (String.IsNullOrEmpty(categoria.Nome))
                 throw new Exception("Nome da é necessário;");
 
-            if (String.IsNullOrEmpty(categoria._descricao))
+            if (String.IsNullOrEmpty(categoria.Descricao))
                 throw new Exception("Descriçao é necessária");
 
             var existe = _categoriaRepository.GetCategoriaByIdAsync(id);
@@ -37,7 +37,7 @@ namespace Application.UseCases.Categorias
 
 
             //Cria a entidade
-            Categoria categoriaAtualizada = new Categoria(categoria._nome, categoria._descricao);
+            Categoria categoriaAtualizada = new Categoria(categoria.Nome, categoria.Descricao);
 
             //Faz a atualização da categoria 
             return await _categoriaRepository.UpdateCategoriaAsync(id, categoriaAtualizada);

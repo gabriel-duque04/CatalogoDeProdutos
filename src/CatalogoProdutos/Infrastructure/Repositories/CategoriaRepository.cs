@@ -48,37 +48,36 @@ namespace Infrastructure.Repositories
 
             var sql = "SELECT * FROM Categorias WHERE Id = @Id";
 
-            return await connection.QuerySingleAsync<Categoria>(sql, new { id });
+            return await connection.QueryFirstOrDefaultAsync<Categoria>(sql, new { id });
         }
 
         public async Task<Categoria> UpdateCategoriaAsync(int id, Categoria novaCategoria)
         {
             using var connection = new SqlConnection(_connectionString);
 
-            var sql = $"UPDATE Categorias" +
-                $" SET Nome = '@Nome', Descricao = '@Descricao' OUTPUT INSERTED.* " +
-                $"WHERE Id = @Id";
+            var sql = "UPDATE Categorias  SET Nome = @Nome, Descricao = @Descricao OUTPUT INSERTED.*  WHERE Id = @Id";
 
-            return await connection.QuerySingleAsync<Categoria>(sql, new { id, Nome = novaCategoria.GetNome, Descricao = novaCategoria.GetDescricao});
+            return await connection.QueryFirstOrDefaultAsync<Categoria>(sql, new { Id = id, Nome = novaCategoria.Nome, Descricao = novaCategoria.Descricao });
         }
 
         public async Task<Categoria> CreateCategoriaAsync(Categoria categoria)
         {
             using var connection = new SqlConnection(_connectionString);
 
-            var sql = $"INSERT INTO Categorias (Nome, Descricao) OUTPUT inserted.*" +
-                $"VALUES('@Nome','@Descricao')";
+            var sql = "INSERT INTO Categorias (Nome, Descricao) OUTPUT inserted.* VALUES(@Nome,@Descricao)";
 
-            return await connection.QuerySingleAsync<Categoria>(sql, new { Nome = categoria.GetNome, Descricao = categoria.GetDescricao });
+            return await connection.QuerySingleAsync<Categoria>(sql, new { Nome = categoria.Nome, Descricao = categoria.Descricao });
         }
 
         public async Task<bool> DeleteCategoriaAsync(int id)
         {
             using var connection = new SqlConnection(_connectionString);
 
-            var sql = $"DELETE FROM Categorias WHERE Id = @Id";
+            var sql = "DELETE FROM Categorias WHERE Id = @Id";
 
-            return await connection.QuerySingleAsync<bool>(sql, new { id });
+            var resultado = await connection.ExecuteAsync(sql, new { Id = id });
+
+            return (resultado > 0);
         }
     }
 }

@@ -8,25 +8,28 @@ namespace Domain.Entities
 {
     public class Produto
     {
-        private readonly int _id;
-        private string _nome;
-        private string _descricao;
-        private double _preco;
-        private int _categoriaId;
+        public int Id { get; private set; }
+        public string Nome {get;private set;}
+        public string Descricao {get;private set;}
+        public decimal Preco {get;private set;}
+        public int CategoriaID {get;private set;}
+        public bool Ativo {get;private set;}
+        public DateTime DataCriacao {get;private set;}
 
-        public Produto(string nome, string descricao, double preco, int categoriaId)
+        public Produto(string nome, string descricao, decimal preco, int categoriaId)
         {
-            this._nome = nome;
-            this._descricao = descricao;
-            this._preco = preco;
-            this._categoriaId = categoriaId;
+            this.Nome = nome;
+            this.Descricao = descricao;
+            this.Preco = preco;
+            this.CategoriaID = categoriaId;
+            this.Ativo = true;
+            this.DataCriacao = DateTime.Now;
         }
 
-        //Getters
-        public string GetNome { get { return _nome; } }
-        public string GetDescricao { get { return _descricao; } }
-        public double GetPreco { get { return _preco; } }
-        public int GetCategoriaId { get { return _categoriaId; } }
+        //Construtor usado para o Dapper
+        protected Produto() { }
+
+       
 
         /// <summary>
         /// Método de alteração do nome do produto, verifica se o novo nome é nulo, vazio ou excede o número de caracteres do banco de dados
@@ -38,7 +41,7 @@ namespace Domain.Entities
             if (novoNome == null || novoNome == "" || novoNome.Length > 200)
                 throw new ArgumentException("Novo nome para produto inválido");
 
-            this._nome = novoNome;
+            this.Nome = novoNome;
 
         }
         /// <summary>
@@ -51,19 +54,19 @@ namespace Domain.Entities
             if (novaDescricao == null || novaDescricao == "" || novaDescricao.Length > 500)
                 throw new ArgumentException("Descrição para produto inválido");
 
-            this._descricao = novaDescricao;
+            this.Descricao = novaDescricao;
 
         }
         /// <summary>
         /// Método de alteração do preço do produto, verifica se o preço é negativo
         /// <param name="novoPreco"></param>
         /// <exception cref="ArgumentException"></exception>
-        public void AlterarPrecoProduto(double novoPreco)
+        public void AlterarPrecoProduto(decimal novoPreco)
         {
             if (novoPreco <= 0)
                 throw new ArgumentException("Preço inválido");
 
-            this._preco = novoPreco;
+            this.Preco = novoPreco;
         }
         /// <summary>
         /// Método de alteração da categoria 
@@ -74,7 +77,7 @@ namespace Domain.Entities
         {
             if (novaCategoriaId < 0) throw new ArgumentException("Categoria inválida");
 
-            this._categoriaId = novaCategoriaId;
+            this.CategoriaID = novaCategoriaId;
         }
     }
 }

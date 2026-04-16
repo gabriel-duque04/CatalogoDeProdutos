@@ -14,15 +14,16 @@ namespace Application.UseCases.Produtos
         private readonly IProdutoRepository _produtoRepository;
         private readonly ICategoriaRepository _categoriaRepository;
 
-        public GetProdutosByCategoriaUseCase(IProdutoRepository produtoRepository)
+        public GetProdutosByCategoriaUseCase(IProdutoRepository produtoRepository, ICategoriaRepository categoriaRepository)
         {
             _produtoRepository = produtoRepository;
+            _categoriaRepository = categoriaRepository;
         }
 
-
+        
         public async Task<IEnumerable<Produto>> ExecutarAsync(int categoriaID)
         {
-            if (_categoriaRepository.GetCategoriaByIdAsync(categoriaID) == null)
+            if (await _categoriaRepository.GetCategoriaByIdAsync(categoriaID) == null)
                 throw new Exception("Categoria inexistente");
 
 
