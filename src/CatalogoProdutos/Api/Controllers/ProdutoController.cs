@@ -35,7 +35,7 @@ namespace Api.Controllers
         /// <param name="produto"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> CreateProdutoUseCase(ProdutoRequestDTO produto)
+        public async Task<IActionResult> CreateProduto(ProdutoRequestDTO produto)
         {
             try 
             {
@@ -58,7 +58,19 @@ namespace Api.Controllers
 
                 return BadRequest(ex.Message);
             }
-            
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteProduto(int id)
+        {
+            try
+            {
+                return Ok(await _deleteProdutoUseCase.ExecutarAsync(id));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         

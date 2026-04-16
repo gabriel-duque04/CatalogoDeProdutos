@@ -20,7 +20,7 @@ namespace Application.UseCases.Produtos
         public async Task<bool> ExecutarAsync(int id)
         {
             //Validações
-            var existe = _produtoRepository.GetProdutoByIdAsync(id);
+            var existe = await _produtoRepository.GetProdutoByIdAsync(id);
             if (existe == null)
                 throw new Exception("Produto inexistente");
 
