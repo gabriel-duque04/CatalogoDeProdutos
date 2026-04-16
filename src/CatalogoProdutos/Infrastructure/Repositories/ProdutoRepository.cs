@@ -38,7 +38,7 @@ namespace Infrastructure.Repositories
 
             var sql = "SELECT * FROM Produtos WHERE Id = @id";
 
-            return await connection.QueryFirstOrDefaultAsync<Produto>(sql, new { id });
+            return await connection.QueryFirstOrDefaultAsync<Produto>(sql, new { Id = id });
         }
 
         public async Task<IEnumerable<Produto>> GetProdutosByCategoriaAsync(int categoriaId)

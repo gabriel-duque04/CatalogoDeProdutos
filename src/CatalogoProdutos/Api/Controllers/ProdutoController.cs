@@ -96,8 +96,25 @@ namespace Api.Controllers
                 return BadRequest(e.Message);
             }
         }
+
         
-        
+        /// <summary>
+        /// Método de get por id de produto
+        /// </summary>
+        /// <param name="id">id do produto a ser pesquisado</param>
+        /// <returns></returns>
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetProdutoById(int id)
+        {
+            try
+            {
+                return Ok(await _getProdutoByIdUseCase.ExecutarAsync(id));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
         
 
         
