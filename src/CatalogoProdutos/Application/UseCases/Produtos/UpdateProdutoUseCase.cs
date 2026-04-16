@@ -15,31 +15,32 @@ namespace Application.UseCases.Produtos
         private readonly IProdutoRepository _produtoRepository;
         private readonly ICategoriaRepository _categoriaRepository;
 
-        public UpdateProdutoUseCase(IProdutoRepository produtoRepository)
+        public UpdateProdutoUseCase(IProdutoRepository produtoRepository, ICategoriaRepository categoriaRepository)
         {
             _produtoRepository = produtoRepository;
+            _categoriaRepository = categoriaRepository;
         }
 
         public async Task<Produto> ExecutarAsync(int id, ProdutoRequestDTO produtoAtualizar)
         {
 
             //validações
-            if (_produtoRepository.GetProdutoByIdAsync(id) == null)
+            if (await _produtoRepository.GetProdutoByIdAsync(id) == null)
                 throw new Exception("Produto inexistente");
 
-            if (String.IsNullOrEmpty(produtoAtualizar._nome))
+            if (String.IsNullOrEmpty(produtoAtualizar.Nome))
                 throw new Exception("Nome é necessário;");
 
-            if (String.IsNullOrEmpty(produtoAtualizar._descricao))
+            if (String.IsNullOrEmpty(produtoAtualizar.Descricao))
                 throw new Exception("Descriçao é necessária");
 
-            if (produtoAtualizar._preco <= 0)
+            if (produtoAtualizar.Preco <= 0)
                 throw new Exception("Preço inválido");
 
-            if (_categoriaRepository.GetCategoriaByIdAsync(produtoAtualizar._categoriaId) == null)
+            if (await _categoriaRepository.GetCategoriaByIdAsync(produtoAtualizar.CategoriaID) == null)
                 throw new Exception("Categoria não existente");
 
-            Produto produto = new Produto(produtoAtualizar._nome, produtoAtualizar._descricao, produtoAtualizar._preco, produtoAtualizar._categoriaId);
+            Produto produto = new Produto(produtoAtualizar.Nome, produtoAtualizar.Descricao, produtoAtualizar.Preco, produtoAtualizar.CategoriaID);
 
 
             return await _produtoRepository.UpdateProdutoAsync(id, produto);

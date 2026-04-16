@@ -8,17 +8,17 @@ namespace Application.DTOs.Requests
 {
     public class ProdutoRequestDTO
     {
-        public string _nome { get; set; }
-        public string _descricao { get; set; }
-        public double _preco { get; set; }
-        public int _categoriaId { get; set; }
+        public string Nome { get; set; }
+        public string Descricao { get; set; }
+        public decimal Preco { get; set; }
+        public int CategoriaID { get; set; }
 
-        public ProdutoRequestDTO(string nome, string descricao, double preco, int categoriaId)
+        public ProdutoRequestDTO(string nome, string descricao, decimal preco, int categoriaId)
         {
-            this._nome = nome;
-            this._descricao = descricao;
-            this._preco = preco;
-            this._categoriaId = categoriaId;
+            this.Nome = nome;
+            this.Descricao = descricao;
+            this.Preco = preco;
+            this.CategoriaID = categoriaId;
         }
     }
 }

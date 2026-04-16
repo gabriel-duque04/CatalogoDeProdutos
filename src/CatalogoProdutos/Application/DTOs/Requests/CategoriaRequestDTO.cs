@@ -8,13 +8,8 @@ namespace Application.DTOs.Requests
 {
     public class CategoriaRequestDTO
     {
-        public string _nome {  get; set; }
-        public string _descricao { get; set; }
+        public string Nome {  get; set; }
+        public string Descricao { get; set; }
 
-        public CategoriaRequestDTO(string nome, string descricao)
-        {
-            this._nome = nome;
-            this._descricao = descricao;
-        }
     }
 }

@@ -21,7 +21,9 @@ namespace Application.UseCases.Produtos
 
         public async Task<Produto> ExecutarAsync(int id)
         {
-            return await _produtoRepository.GetProdutoByIdAsync(id);
+            var produto = await _produtoRepository.GetProdutoByIdAsync(id);
+
+            return produto == null ? throw new Exception("Produto não encontrado") : produto;
         }
     }
 }
