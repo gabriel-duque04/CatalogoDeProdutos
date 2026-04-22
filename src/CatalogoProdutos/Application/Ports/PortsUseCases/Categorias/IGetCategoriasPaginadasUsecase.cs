@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Application.Ports.PortsUseCases.Categorias
 {
-    public interface IGetAllCategoriasUseCase
+    public interface IGetCategoriasPaginadasUsecase
     {
-        Task<IEnumerable<Categoria>> ExecutarAsync();
+        Task<IEnumerable<Categoria>> ExecutarAsync(int pagina, int tamanhoPagina);
     }
 }

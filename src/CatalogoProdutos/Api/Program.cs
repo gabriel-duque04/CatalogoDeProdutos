@@ -32,7 +32,7 @@ namespace Api
             builder.Services.AddScoped<ICreateCategoriaUseCase, CreateCategoriaUseCase>();
             builder.Services.AddScoped<IDeleteCategoriaUseCase, DeleteCategoriaUseCase>();
             builder.Services.AddScoped<IUpdateCategoriaUseCase, UpdateCategoriaUseCase>();
-            builder.Services.AddScoped<IGetAllCategoriasUseCase, GetAllCategoriasUseCase>();
+            builder.Services.AddScoped<IGetCategoriasPaginadasUsecase, GetCategoriasPaginadasUseCase>();
             builder.Services.AddScoped<IGetCategoriaByIdUseCase, GetCategoriaByIdUseCase>();
 
             

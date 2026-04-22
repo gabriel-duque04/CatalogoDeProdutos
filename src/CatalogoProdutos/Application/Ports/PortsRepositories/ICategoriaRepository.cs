@@ -17,7 +17,7 @@ namespace Application.Ports.PortsRepositories
 
 
         //Ports para o GET das Categorias
-        Task<IEnumerable<Categoria>> GetAllCategoriasAsync();
+        Task<IEnumerable<Categoria>> GetCategoriasPaginadasAsync(int pagina, int tamanhoPagina);
         Task<Categoria?> GetCategoriaByIdAsync(int id);
 
 
