@@ -33,13 +33,15 @@ namespace Infrastructure.Repositories
         }
 
 
-        public async Task<IEnumerable<Categoria>> GetAllCategoriasAsync()
+        public async Task<IEnumerable<Categoria>> GetCategoriasPaginadasAsync(int pagina, int tamanhoPagina)
         {
             using var connection = new SqlConnection(_connectionString);
 
-            var sql = "SELECT * FROM Categorias";
+            var pular = (pagina - 1) * tamanhoPagina;
 
-            return await connection.QueryAsync<Categoria>(sql);
+            var sql = "SELECT * FROM Categorias ORDER BY Id OFFSET @Pular ROWS FETCH NEXT @Tamanho ROWS ONLY;";
+
+            return await connection.QueryAsync<Categoria>(sql, new {Pular = pular, Tamanho = tamanhoPagina});
         }
 
         public async Task<Categoria?> GetCategoriaByIdAsync(int id)

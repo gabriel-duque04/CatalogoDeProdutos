@@ -1,5 +1,6 @@
 ﻿using Application.DTOs.Requests;
 using Application.Ports.PortsUseCases.Categorias;
+using Application.UseCases.Categorias;
 using Microsoft.AspNetCore.Mvc;
 namespace Api.Controllers
 {
@@ -11,18 +12,18 @@ namespace Api.Controllers
         private readonly IDeleteCategoriaUseCase _deleteCategoriaUseCase;
         private readonly IUpdateCategoriaUseCase _updateCategoriaUseCase;
         private readonly IGetCategoriaByIdUseCase _getCategoriaByIdUseCase;
-        private readonly IGetAllCategoriasUseCase _getAllCategoriasUseCase;
+        private readonly IGetCategoriasPaginadasUsecase _geCategoriasPaginadasUsecase;
 
         public CategoriaController(ICreateCategoriaUseCase createCategoriaUseCase,
             IDeleteCategoriaUseCase deleteCategoriaUseCase,
             IUpdateCategoriaUseCase updateCategoriaUseCase,
-            IGetAllCategoriasUseCase getAllCategoriasUseCase,
+            IGetCategoriasPaginadasUsecase geCategoriasPaginadasUsecase,
             IGetCategoriaByIdUseCase getCategoriaByIdUseCase)
         {
             _createCategoriaUseCase = createCategoriaUseCase;
             _deleteCategoriaUseCase = deleteCategoriaUseCase;
             _updateCategoriaUseCase = updateCategoriaUseCase;
-            _getAllCategoriasUseCase = getAllCategoriasUseCase;
+            _geCategoriasPaginadasUsecase = geCategoriasPaginadasUsecase;
             _getCategoriaByIdUseCase = getCategoriaByIdUseCase;
         }
 
@@ -31,9 +32,12 @@ namespace Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IActionResult> GetAllCategorias()
+        public async Task<IActionResult> GetCategoriaPaginadas([FromQuery] int pagina = 1, [FromQuery] int tamanhoPagina = 10)
         {
-            var categorias = await _getAllCategoriasUseCase.ExecutarAsync();
+            if (pagina <= 0) pagina = 1;
+            if (tamanhoPagina <= 0) tamanhoPagina = 10;
+
+            var categorias = await _geCategoriasPaginadasUsecase.ExecutarAsync(pagina, tamanhoPagina);
 
             return Ok(categorias);
         }
