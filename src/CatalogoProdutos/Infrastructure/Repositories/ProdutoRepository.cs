@@ -41,22 +41,26 @@ namespace Infrastructure.Repositories
             return await connection.QueryFirstOrDefaultAsync<Produto>(sql, new { Id = id });
         }
 
-        public async Task<IEnumerable<Produto>> GetProdutosByCategoriaAsync(int categoriaId)
+        public async Task<IEnumerable<Produto>> GetProdutosByCategoriaPaginadoAsync(int categoriaId,  int pagina, int tamanhoPagina)
         {
             using var connection = new SqlConnection(_connectionString);
+            
+            var pular = (pagina - 1) * tamanhoPagina;
 
-            var sql = "SELECT * FROM Produtos WHERE CategoriaID = @categoriaId";
+            var sql = "SELECT * FROM Produtos  WHERE CategoriaID = @CategoriaId ORDER BY Id OFFSET @Pular ROWS FETCH NEXT @Tamanho ROWS ONLY; ";
 
-            return await connection.QueryAsync<Produto>(sql, new { categoriaId });
+            return await connection.QueryAsync<Produto>(sql, new { CategoriaId = categoriaId, Pular = pular, Tamanho = tamanhoPagina});
         }
 
-        public async Task<IEnumerable<Produto>> GetAllProdutos()
+        public async Task<IEnumerable<Produto>> GetProdutosPaginado(int pagina, int tamanhoPagina)
         {
             using var connection = new SqlConnection(_connectionString);
 
-            var sql = "SELECT * FROM Produtos";
+            var pular = (pagina - 1) * tamanhoPagina;
 
-            return await connection.QueryAsync<Produto>(sql);
+            var sql = "SELECT * FROM Produtos ORDER BY Id OFFSET @Pular ROWS FETCH NEXT @Tamanho ROWS ONLY";
+
+            return await connection.QueryAsync<Produto>(sql, new {Pular = pular, Tamanho = tamanhoPagina});
         }
 
         public async Task<Produto> CreateProdutoAsync(Produto produto)

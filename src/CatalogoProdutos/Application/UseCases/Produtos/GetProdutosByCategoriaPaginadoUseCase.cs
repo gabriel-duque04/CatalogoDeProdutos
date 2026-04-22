@@ -9,25 +9,25 @@ using System.Threading.Tasks;
 
 namespace Application.UseCases.Produtos
 {
-    public class GetProdutosByCategoriaUseCase : IGetProdutosByCategoriaUseCase
+    public class GetProdutosByCategoriaPaginadoUseCase : IGetProdutosByCategoriaPaginadoUseCase
     {
         private readonly IProdutoRepository _produtoRepository;
         private readonly ICategoriaRepository _categoriaRepository;
 
-        public GetProdutosByCategoriaUseCase(IProdutoRepository produtoRepository, ICategoriaRepository categoriaRepository)
+        public GetProdutosByCategoriaPaginadoUseCase(IProdutoRepository produtoRepository, ICategoriaRepository categoriaRepository)
         {
             _produtoRepository = produtoRepository;
             _categoriaRepository = categoriaRepository;
         }
 
         
-        public async Task<IEnumerable<Produto>> ExecutarAsync(int categoriaID)
+        public async Task<IEnumerable<Produto>> ExecutarAsync(int categoriaID, int pagina, int tamanhoPagina)
         {
             if (await _categoriaRepository.GetCategoriaByIdAsync(categoriaID) == null)
                 throw new Exception("Categoria inexistente");
 
 
-            return await _produtoRepository.GetProdutosByCategoriaAsync(categoriaID);
+            return await _produtoRepository.GetProdutosByCategoriaPaginadoAsync(categoriaID, pagina, tamanhoPagina);
         }
 
     }

@@ -9,23 +9,23 @@ namespace Api.Controllers
     {
         private readonly ICreateProdutoUseCase _createProdutoUseCase;
         private readonly IDeleteProdutoUseCase _deleteProdutoUseCase;
-        private readonly IGetAllProdutosUseCase _getAllProdutosUseCase;
+        private readonly IGetProdutosPaginadoUseCase _getProdutosPaginadoUseCase;
         private readonly IGetProdutoByIdUseCase _getProdutoByIdUseCase;
-        private readonly IGetProdutosByCategoriaUseCase _getProdutosByCategoriaUseCase;
+        private readonly IGetProdutosByCategoriaPaginadoUseCase _getProdutosByCategoriaPaginadoUseCase;
         private readonly IUpdateProdutoUseCase _updateProdutoUseCase;
 
         public ProdutoController(ICreateProdutoUseCase createProdutoUseCase,
              IDeleteProdutoUseCase deleteProdutoUseCase,
-             IGetAllProdutosUseCase getAllProdutosUseCase,
+             IGetProdutosPaginadoUseCase getProdutosPaginadoUseCase,
              IGetProdutoByIdUseCase getProdutoByIdUseCase,
-             IGetProdutosByCategoriaUseCase getProdutosByCategoriaUseCase,
+             IGetProdutosByCategoriaPaginadoUseCase getProdutosByCategoriaPaginadoUseCase,
              IUpdateProdutoUseCase updateProdutoUseCase)
         {
             this._createProdutoUseCase = createProdutoUseCase;
             this._deleteProdutoUseCase = deleteProdutoUseCase;
-            this._getAllProdutosUseCase = getAllProdutosUseCase;
+            this._getProdutosPaginadoUseCase = getProdutosPaginadoUseCase;
             this._getProdutoByIdUseCase = getProdutoByIdUseCase;
-            this._getProdutosByCategoriaUseCase = getProdutosByCategoriaUseCase;
+            this._getProdutosByCategoriaPaginadoUseCase = getProdutosByCategoriaPaginadoUseCase;
             this._updateProdutoUseCase = updateProdutoUseCase;
         }
 
@@ -76,11 +76,11 @@ namespace Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IActionResult> GetAllProdutos()
+        public async Task<IActionResult> GetProdutosPaginado([FromQuery] int pagina = 1, [FromQuery] int tamanhoPagina = 10)
         {
             try
             {
-                return Ok(await _getAllProdutosUseCase.ExecutarAsync());
+                return Ok(await _getProdutosPaginadoUseCase.ExecutarAsync(pagina, tamanhoPagina));
             }
             catch (Exception e)
             {
@@ -114,11 +114,11 @@ namespace Api.Controllers
         /// <param name="categoriaId"></param>
         /// <returns></returns>
         [HttpGet("porCategoria/{categoriaId}")]
-        public async Task<IActionResult> GetProdutosByCategoria(int categoriaId)
+        public async Task<IActionResult> GetProdutosByCategoria(int categoriaId, [FromQuery] int pagina = 1, [FromQuery] int tamanhoPagina = 10)
         {
             try
             {
-                return Ok(await _getProdutosByCategoriaUseCase.ExecutarAsync(categoriaId));
+                return Ok(await _getProdutosByCategoriaPaginadoUseCase.ExecutarAsync(categoriaId,pagina, tamanhoPagina));
             }
             catch (Exception e)
             {

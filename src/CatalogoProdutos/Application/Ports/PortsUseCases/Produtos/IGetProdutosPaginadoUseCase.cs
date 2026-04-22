@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace Application.Ports.PortsUseCases.Produtos
 {
-    public interface IGetAllProdutosUseCase
+    public interface IGetProdutosPaginadoUseCase
     {
-        Task<IEnumerable<Produto>> ExecutarAsync();
+        Task<IEnumerable<Produto>> ExecutarAsync(int pagina, int tamanhoPagina);
     }
 }
