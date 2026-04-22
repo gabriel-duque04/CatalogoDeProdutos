@@ -10,18 +10,18 @@ using System.Threading.Tasks;
 
 namespace Application.UseCases.Produtos
 {
-    public class GetAllProdutosUseCase : IGetAllProdutosUseCase
+    public class GetProdutosPaginadoUseCase : IGetProdutosPaginadoUseCase
     {
         private readonly IProdutoRepository _produtoRepository;
 
-        public GetAllProdutosUseCase(IProdutoRepository produtoRepository)
+        public GetProdutosPaginadoUseCase(IProdutoRepository produtoRepository)
         {
             _produtoRepository = produtoRepository;
         }
 
-        public async Task<IEnumerable<Produto>> ExecutarAsync()
+        public async Task<IEnumerable<Produto>> ExecutarAsync(int pagina, int tmanhoPagina)
         {
-            return await _produtoRepository.GetAllProdutos();
+            return await _produtoRepository.GetProdutosPaginado(pagina, tmanhoPagina);
         }
     }
 }

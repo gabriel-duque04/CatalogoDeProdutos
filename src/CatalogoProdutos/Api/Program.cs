@@ -24,9 +24,9 @@ namespace Api
             builder.Services.AddScoped<ICreateProdutoUseCase, CreateProdutoUseCase>();
             builder.Services.AddScoped<IDeleteProdutoUseCase, DeleteProdutoUseCase>();
             builder.Services.AddScoped<IUpdateProdutoUseCase, UpdateProdutoUseCase>();
-            builder.Services.AddScoped<IGetAllProdutosUseCase, GetAllProdutosUseCase>();
+            builder.Services.AddScoped<IGetProdutosPaginadoUseCase, GetProdutosPaginadoUseCase>();
             builder.Services.AddScoped<IGetProdutoByIdUseCase, GetProdutoByIdUseCase>();
-            builder.Services.AddScoped<IGetProdutosByCategoriaUseCase, GetProdutosByCategoriaUseCase>();
+            builder.Services.AddScoped<IGetProdutosByCategoriaPaginadoUseCase, GetProdutosByCategoriaPaginadoUseCase>();
 
             //Use cases categorias
             builder.Services.AddScoped<ICreateCategoriaUseCase, CreateCategoriaUseCase>();
