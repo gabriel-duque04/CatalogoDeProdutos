@@ -9,19 +9,19 @@ using System.Threading.Tasks;
 
 namespace Application.UseCases.Categorias
 {
-    public class GetAllCategoriasUseCase : IGetAllCategoriasUseCase
+    public class GetCategoriasPaginadasUseCase : IGetCategoriasPaginadasUsecase
     {
         private readonly ICategoriaRepository _categoriaRepository;
 
-        public GetAllCategoriasUseCase(ICategoriaRepository categoriaRepository)
+        public GetCategoriasPaginadasUseCase(ICategoriaRepository categoriaRepository)
         {
             _categoriaRepository = categoriaRepository;
         }
 
-        public async Task<IEnumerable<Categoria>> ExecutarAsync()
+        public async Task<IEnumerable<Categoria>> ExecutarAsync(int pagina, int tamanhoPagina)
         {
             //get de todas categorias
-            return await _categoriaRepository.GetAllCategoriasAsync();
+            return await _categoriaRepository.GetCategoriasPaginadasAsync(pagina, tamanhoPagina);
         }
     }
 }
