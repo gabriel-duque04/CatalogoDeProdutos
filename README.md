@@ -19,32 +19,47 @@ Este sistema foi construído para ser um gerenciador de um catálogo de produtos
 
 O projeto utiliza a **Arquitetura Hexagonal**, o que garante que as regras de negócio fiquem isoladas de tecnologias externas.
 
-* **Domain:** Onde moram as entidades (Produto, Categoria) e as regras de ouro do negócio.
-* **Application:** Contém os Use Cases. É o "meio de campo" que orquestra as ações.
-* **Infrastructure:** Onde a "mágica" do banco acontece, incluindo repositórios Dapper e scripts de inicialização Docker.
+* **Domain:** Onde moram as entidades (Produto, Categoria).
+* **Application:** Contém os Use Cases. É o que intermedia as operações e garante o funcionamento.
+* **Infrastructure:** Onde as operações do banco acontece, incluindo repositórios Dapper e scripts de inicialização Docker.
 * **Api:** A porta de entrada, onde os Controllers recebem os pedidos.
 
 ---
 
-## ⚙️ Configuração do Banco de Dados (Docker)
+## Configuração do Banco de Dados (Docker)
 
 Para rodar o banco de dados automaticamente com todas as tabelas e dados iniciais, navegue até a pasta:
-src\CatalogoProdutos\Infrastructure\db-create\
+
+`src\CatalogoProdutos\Infrastructure\db-create\`
 
 ### Windows
 1. Construir a imagem:
+
+```console
    docker build -t img-catalogo-db .
+```
+   
 2. Executar o container:
    docker run -p 1433:1433 --name container-catalogo-db -d img-catalogo-db
 
+```console
+   docker run -p 1433:1433 --name container-catalogo-db -d img-catalogo-db
+```
+
 ### Mac (Chips M1, M2 ou M3)
 1. Construir a imagem:
+   
+```console
    docker build --platform linux/amd64 -t img-catalogo-db .
-2. Executar o container:
-   docker run --platform linux/amd64 -p 1433:1433 --name container-catalogo-db -d img-catalogo-db
+```
+3. Executar o container:
+
+```console
+  docker run --platform linux/amd64 -p 1433:1433 --name container-catalogo-db -d img-catalogo-db
+```
 
 
-## ⚙️ Configuração do Banco de Dados (Local)
+## Configuração do Banco de Dados (Local)
 
 Para rodar localmente:
 1. Instale o SQL Server, crie sua instância.
@@ -56,7 +71,9 @@ Para rodar localmente:
 
 ## Dados de Conexão
 
-Após subir o container, aguarde cerca de 30 a 50 segundos para o script de inicialização processar as tabelas.
+**!!!IMPORTANTE!!!**
+
+**Após subir o container, aguarde cerca de 30 a 50 segundos para o script de inicialização processar as tabelas.**
 
 **Dados para conexão:**
 
@@ -66,9 +83,9 @@ Após subir o container, aguarde cerca de 30 a 50 segundos para o script de inic
 * Banco de Dados: CatalogoDeProdutos
 
 ConnectionString:
-"ConnectionStrings": {
+`"ConnectionStrings": {
   "DefaultConnection": "Server=localhost,1433;Database=CatalogoDeProdutos;User Id=sa;Password=CatalogoDeProdutos2304!#;TrustServerCertificate=True;"
-}
+}`
 
 ---
 
