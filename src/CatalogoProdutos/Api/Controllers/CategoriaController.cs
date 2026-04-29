@@ -51,12 +51,20 @@ namespace Api.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCategoriaById(int id)
         {
-            var categoria = await _getCategoriaByIdUseCase.ExecutarAsync(id);
+            try
+            {
+                var categoria = await _getCategoriaByIdUseCase.ExecutarAsync(id);
 
-            if (categoria == null)
-                return BadRequest("Categoria não encontrada");
+                if (categoria == null)
+                    return BadRequest("Categoria não encontrada");
 
-            return Ok(categoria);
+                return Ok(categoria);
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
 
@@ -68,12 +76,21 @@ namespace Api.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCategoria(int id)
         {
-            var foiDeletado = await _deleteCategoriaUseCase.ExecutarAsync(id);
+            try
+            {
 
-            if (!foiDeletado)
-                return NotFound("Categoria não encontrada");
-            else 
-                return NoContent();
+                var foiDeletado = await _deleteCategoriaUseCase.ExecutarAsync(id);
+
+                if (!foiDeletado)
+                    return BadRequest("Categoria não encontrada");
+                else
+                    return Ok();
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         /// <summary>
@@ -84,11 +101,20 @@ namespace Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateCategoria([FromBody] CategoriaRequestDTO novaCategoria)
         {
-            var categoriaCriada = await _createCategoriaUseCase.ExecutarAsync(novaCategoria);
 
-            if(categoriaCriada == null) { return BadRequest("Objeto nulo"); }
+            try
+            {
+                var categoriaCriada = await _createCategoriaUseCase.ExecutarAsync(novaCategoria);
 
-            return Ok(categoriaCriada);
+                if (categoriaCriada == null) { return BadRequest("Objeto nulo"); }
+
+                return Ok(categoriaCriada);
+
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         /// <summary>
@@ -100,14 +126,21 @@ namespace Api.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateCategoria(int id, [FromBody] CategoriaRequestDTO categoriaAtualizada)
         {
-            var posAtualizacao = await _updateCategoriaUseCase.ExecutarAsync(id, categoriaAtualizada);
-
-            if(posAtualizacao == null)
+            
+            try
             {
-                return BadRequest("Categoria não encontrada");
-            }
+                var posAtualizacao = await _updateCategoriaUseCase.ExecutarAsync(id, categoriaAtualizada);
 
-            return Ok(posAtualizacao);
+                if (posAtualizacao == null)
+                    return BadRequest("Categoria não encontrada");
+
+                return Ok(posAtualizacao);
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
