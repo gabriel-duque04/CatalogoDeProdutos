@@ -36,5 +36,23 @@ namespace Application.Tests.ProdutosTests
             var ex = await Assert.ThrowsAsync<Exception>(() => _useCase.ExecutarAsync(idDoProduto, request));
             Assert.Equal("Produto inexistente", ex.Message);
         }
+
+        [Fact]
+        public async Task ExecutarAsync_CategoriaNaoExiste()
+        {
+            ProdutoRequestDTO request = new ProdutoRequestDTO("Editado", "teste edicao produto", 15, 99);
+            int idDoProduto = 10;
+
+            var produtoExistente = new Produto("Teclado Antigo", "tecladinhoo", 100, 32223);
+            _produtoRepoMock.Setup(r => r.GetProdutoByIdAsync(idDoProduto))
+                            .ReturnsAsync(produtoExistente);
+
+
+            _categoriaRepoMock.Setup(r => r.GetCategoriaByIdAsync(request.CategoriaID))
+                              .ReturnsAsync((Categoria)null);
+
+            var ex = await Assert.ThrowsAsync<Exception>(() => _useCase.ExecutarAsync(idDoProduto, request));
+            Assert.Equal("Categoria não existente", ex.Message);
+        }
     }
 }
