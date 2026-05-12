@@ -54,5 +54,23 @@ namespace Application.Tests.ProdutosTests
             var ex = await Assert.ThrowsAsync<Exception>(() => _useCase.ExecutarAsync(idDoProduto, request));
             Assert.Equal("Categoria não existente", ex.Message);
         }
+
+        [Fact]
+        public async Task ExecutarAsync_DeveAtualizarComSucesso_QuandoDadosForemValidos()
+        {
+            ProdutoRequestDTO request = new ProdutoRequestDTO("Editado", "teste edicao produto", 15, 99);
+            int idDoProduto = 10;
+
+            _produtoRepoMock.Setup(r => r.GetProdutoByIdAsync(idDoProduto))
+                            .ReturnsAsync(new Produto("Monitor Velho","Monitor", 1, 500));
+
+            _categoriaRepoMock.Setup(r => r.GetCategoriaByIdAsync(request.CategoriaID))
+                              .ReturnsAsync(new Categoria("Periféricos", "Desc"));
+
+            await _useCase.ExecutarAsync(idDoProduto, request);
+
+            _produtoRepoMock.Verify(r => r.UpdateProdutoAsync(idDoProduto,It.IsAny<Produto>()), Times.Once);
+        }
+    
     }
 }
