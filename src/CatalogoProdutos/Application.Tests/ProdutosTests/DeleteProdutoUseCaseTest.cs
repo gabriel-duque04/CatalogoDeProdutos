@@ -36,5 +36,22 @@ namespace Application.Tests.ProdutosTests
             _produtoRepoMock.Verify(r => r.DeleteProdutosAsync(It.IsAny<int>()), Times.Never);
         
         }
+
+        [Fact]
+        public async Task ExecutarAsync_DeleteExecutadoComSucesso()
+        {
+            int idTeste = 1;
+            var produtoFake = new Domain.Entities.Produto("Monitor","teste" ,1, 500);
+
+            
+            _produtoRepoMock.Setup(r => r.GetProdutoByIdAsync(idTeste))
+                .ReturnsAsync(produtoFake);
+
+            _produtoRepoMock.Setup(r => r.DeleteProdutosAsync(idTeste)).ReturnsAsync(true);
+
+            await _useCase.ExecutarAsync(idTeste);
+            
+            _produtoRepoMock.Verify(r => r.DeleteProdutosAsync(It.IsAny<int>()), Times.Once);
+        }
     }
 }
