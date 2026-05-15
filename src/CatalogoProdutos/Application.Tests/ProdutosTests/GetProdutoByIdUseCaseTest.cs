@@ -33,5 +33,22 @@ namespace Application.Tests.ProdutosTests
             var ex = await Assert.ThrowsAsync<Exception>(() => _useCase.ExecutarAsync(idInexistente));
             Assert.Equal("Produto não encontrado", ex.Message);
         }
+
+        [Fact]
+        public async Task ExecutarAsync_RetornaProduto()
+        {
+            int idTeste = 1;
+            Produto produtoTeste = new Produto("Cafezin", "Hmmmmm cafezin recém passado", 30, 1);
+
+            _produtoRepoMock.Setup(r => r.GetProdutoByIdAsync(idTeste)).ReturnsAsync(produtoTeste);
+
+            var resultado = await _useCase.ExecutarAsync(idTeste);
+
+            Assert.NotNull(resultado);
+            Assert.Equal("Cafezin", resultado.Nome);
+
+            _produtoRepoMock.Verify(r => r.GetProdutoByIdAsync(idTeste), Times.Once);
+
+        }
     }
 }
