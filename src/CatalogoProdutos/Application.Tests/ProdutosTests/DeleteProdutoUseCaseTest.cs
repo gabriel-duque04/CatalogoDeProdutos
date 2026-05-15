@@ -49,9 +49,9 @@ namespace Application.Tests.ProdutosTests
 
             _produtoRepoMock.Setup(r => r.DeleteProdutosAsync(idTeste)).ReturnsAsync(true);
 
-            await _useCase.ExecutarAsync(idTeste);
-            
-            _produtoRepoMock.Verify(r => r.DeleteProdutosAsync(It.IsAny<int>()), Times.Once);
+           await _useCase.ExecutarAsync(idTeste);
+
+            _produtoRepoMock.Verify(r => r.DeleteProdutosAsync(idTeste), Times.Once);
         }
     }
 }
