@@ -19,9 +19,9 @@ namespace Application.UseCases.Produtos
             _produtoRepository = produtoRepository;
         }
 
-        public async Task<IEnumerable<Produto>> ExecutarAsync(int pagina, int tmanhoPagina)
+        public async Task<IEnumerable<Produto>> ExecutarAsync(int pagina, int tamanhoPagina)
         {
-            return await _produtoRepository.GetProdutosPaginado(pagina, tmanhoPagina);
+            return await _produtoRepository.GetProdutosPaginado(pagina, tamanhoPagina);
         }
     }
 }
