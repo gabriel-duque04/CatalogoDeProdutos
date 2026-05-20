@@ -22,7 +22,10 @@ namespace Application.UseCases.Categorias
 
         public async Task<bool> ExecutarAsync(int id)
         {
-            return await _categoriaRepository.DeleteCategoriaAsync(id);
+            var existe = await _categoriaRepository.GetCategoriaByIdAsync(id);
+            
+            
+            return existe == null ? throw new Exception("Categoria não existe"): await _categoriaRepository.DeleteCategoriaAsync(id);
         }
     }
 }
