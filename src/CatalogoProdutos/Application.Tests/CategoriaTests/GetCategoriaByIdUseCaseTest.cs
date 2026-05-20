@@ -37,5 +37,22 @@ namespace Application.Tests.CategoriaTests
             Assert.Equal("Categoria não encontrada", ex.Message);
 
         }
+
+        [Fact]
+        public async Task ExecutarAsync_RetornaCategoria()
+        {
+            int id = 2;
+
+            Categoria categoriaTeste = new Categoria("Categoria do teste", "Categoria criada para teste");
+
+            _categoriaRepoMock.Setup(r => r.GetCategoriaByIdAsync(id)).ReturnsAsync(categoriaTeste);
+
+            var resultado = await _useCase.ExecutarAsync(id);
+
+            Assert.NotNull(resultado);
+            Assert.Equal("Categoria do teste", categoriaTeste.Nome);
+
+            _categoriaRepoMock.Verify(r => r.GetCategoriaByIdAsync(id), Times.Once());
+        }
     }
 }
