@@ -3,6 +3,7 @@ using Application.Ports.PortsUseCases.Categorias;
 using Domain.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,8 +21,9 @@ namespace Application.UseCases.Categorias
 
         public async Task<IEnumerable<Categoria>> ExecutarAsync(int pagina, int tamanhoPagina)
         {
-            //get de todas categorias
-            return await _categoriaRepository.GetCategoriasPaginadasAsync(pagina, tamanhoPagina);
+            var resultado = await _categoriaRepository.GetCategoriasPaginadasAsync(pagina, tamanhoPagina);
+
+            return resultado == null ? throw new Exception("Pagina vazia"):resultado;
         }
     }
 }
