@@ -30,7 +30,7 @@ namespace Application.UseCases.Categorias
             if (String.IsNullOrEmpty(categoria.Descricao))
                 throw new Exception("Descriçao é necessária");
 
-            var existe = _categoriaRepository.GetCategoriaByIdAsync(id);
+            var existe = await _categoriaRepository.GetCategoriaByIdAsync(id);
             if (existe == null)
                 throw new Exception("Categoria inexistente");
 

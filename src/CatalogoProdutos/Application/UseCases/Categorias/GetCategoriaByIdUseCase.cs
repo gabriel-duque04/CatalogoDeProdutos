@@ -21,8 +21,9 @@ namespace Application.UseCases.Categorias
 
         public async Task<Categoria> ExecutarAsync(int id)
         {
+            var categoria = await _categoriaRepository.GetCategoriaByIdAsync(id);
             //Pega os produtos por categoria
-            return await _categoriaRepository.GetCategoriaByIdAsync(id);
+            return categoria == null ? throw new Exception("Categoria não encontrada") : categoria;
         }
     }
 }
