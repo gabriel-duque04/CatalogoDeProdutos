@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace Application.UseCases.Categorias
 {
-    public class GetCategoriasPaginadasUseCase : IGetCategoriasPaginadasUsecase
+    public class GetCategoriasPaginadas : IGetCategoriasPaginadas
     {
         private readonly ICategoriaRepository _categoriaRepository;
 
-        public GetCategoriasPaginadasUseCase(ICategoriaRepository categoriaRepository)
+        public GetCategoriasPaginadas(ICategoriaRepository categoriaRepository)
         {
             _categoriaRepository = categoriaRepository;
         }

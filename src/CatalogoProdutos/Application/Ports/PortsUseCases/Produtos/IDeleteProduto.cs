@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Ports.PortsUseCases.Categorias
+namespace Application.Ports.PortsUseCases.Produtos
 {
-    public interface IGetCategoriaByIdUseCase
+    public interface IDeleteProduto
     {
-        Task<Categoria> ExecutarAsync(int id);
+        Task<bool> ExecutarAsync(int id);
     }
 }

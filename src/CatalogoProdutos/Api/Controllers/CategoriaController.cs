@@ -8,17 +8,17 @@ namespace Api.Controllers
     [Route("api/[controller]")]
     public class CategoriaController : ControllerBase
     {
-        private readonly ICreateCategoriaUseCase _createCategoriaUseCase;
-        private readonly IDeleteCategoriaUseCase _deleteCategoriaUseCase;
-        private readonly IUpdateCategoriaUseCase _updateCategoriaUseCase;
-        private readonly IGetCategoriaByIdUseCase _getCategoriaByIdUseCase;
-        private readonly IGetCategoriasPaginadasUsecase _geCategoriasPaginadasUsecase;
+        private readonly ICreateCategoria _createCategoriaUseCase;
+        private readonly IDeleteCategoria _deleteCategoriaUseCase;
+        private readonly IUpdateCategoriaUse _updateCategoriaUseCase;
+        private readonly IGetCategoriaById _getCategoriaByIdUseCase;
+        private readonly IGetCategoriasPaginadas _geCategoriasPaginadasUsecase;
 
-        public CategoriaController(ICreateCategoriaUseCase createCategoriaUseCase,
-            IDeleteCategoriaUseCase deleteCategoriaUseCase,
-            IUpdateCategoriaUseCase updateCategoriaUseCase,
-            IGetCategoriasPaginadasUsecase geCategoriasPaginadasUsecase,
-            IGetCategoriaByIdUseCase getCategoriaByIdUseCase)
+        public CategoriaController(ICreateCategoria createCategoriaUseCase,
+            IDeleteCategoria deleteCategoriaUseCase,
+            IUpdateCategoriaUse updateCategoriaUseCase,
+            IGetCategoriasPaginadas geCategoriasPaginadasUsecase,
+            IGetCategoriaById getCategoriaByIdUseCase)
         {
             _createCategoriaUseCase = createCategoriaUseCase;
             _deleteCategoriaUseCase = deleteCategoriaUseCase;

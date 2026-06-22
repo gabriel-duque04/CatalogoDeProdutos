@@ -21,19 +21,19 @@ namespace Api
             builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
             
             //Use cases produtos
-            builder.Services.AddScoped<ICreateProdutoUseCase, CreateProdutoUseCase>();
-            builder.Services.AddScoped<IDeleteProdutoUseCase, DeleteProdutoUseCase>();
-            builder.Services.AddScoped<IUpdateProdutoUseCase, UpdateProdutoUseCase>();
-            builder.Services.AddScoped<IGetProdutosPaginadoUseCase, GetProdutosPaginadoUseCase>();
-            builder.Services.AddScoped<IGetProdutoByIdUseCase, GetProdutoByIdUseCase>();
-            builder.Services.AddScoped<IGetProdutosByCategoriaPaginadoUseCase, GetProdutosByCategoriaPaginadoUseCase>();
+            builder.Services.AddScoped<ICreateProduto, CreateProduto>();
+            builder.Services.AddScoped<IDeleteProduto, DeleteProduto>();
+            builder.Services.AddScoped<IUpdateProduto, UpdateProduto>();
+            builder.Services.AddScoped<IGetProdutosPaginado, GetProdutosPaginado>();
+            builder.Services.AddScoped<IGetProdutoById, GetProdutoById>();
+            builder.Services.AddScoped<IGetProdutosByCategoriaPaginadoUseCase, GetProdutosByCategoriaPaginado>();
 
             //Use cases categorias
-            builder.Services.AddScoped<ICreateCategoriaUseCase, CreateCategoriaUseCase>();
-            builder.Services.AddScoped<IDeleteCategoriaUseCase, DeleteCategoriaUseCase>();
-            builder.Services.AddScoped<IUpdateCategoriaUseCase, UpdateCategoriaUseCase>();
-            builder.Services.AddScoped<IGetCategoriasPaginadasUsecase, GetCategoriasPaginadasUseCase>();
-            builder.Services.AddScoped<IGetCategoriaByIdUseCase, GetCategoriaByIdUseCase>();
+            builder.Services.AddScoped<ICreateCategoria, CreateCategoria>();
+            builder.Services.AddScoped<IDeleteCategoria, DeleteCategoria>();
+            builder.Services.AddScoped<IUpdateCategoriaUse, UpdateCategoria>();
+            builder.Services.AddScoped<IGetCategoriasPaginadas, GetCategoriasPaginadas>();
+            builder.Services.AddScoped<IGetCategoriaById, GetCategoriaById>();
 
             
             //---------------------------------------------

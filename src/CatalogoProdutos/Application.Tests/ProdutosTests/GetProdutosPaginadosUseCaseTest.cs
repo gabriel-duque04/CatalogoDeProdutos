@@ -14,12 +14,12 @@ namespace Application.Tests.ProdutosTests
     public class GetProdutosPaginadosUseCaseTest
     {
         private readonly Mock<IProdutoRepository> _produtoRepoMock;
-        private readonly GetProdutosPaginadoUseCase _useCase;
+        private readonly GetProdutosPaginado _useCase;
 
         public GetProdutosPaginadosUseCaseTest()
         {
             _produtoRepoMock = new Mock<IProdutoRepository>();
-            _useCase = new GetProdutosPaginadoUseCase(_produtoRepoMock.Object);
+            _useCase = new GetProdutosPaginado(_produtoRepoMock.Object);
         }
 
 

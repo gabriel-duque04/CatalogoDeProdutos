@@ -6,10 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Ports.PortsUseCases.Categorias
+namespace Application.Ports.PortsUseCases.Produtos
 {
-    public interface ICreateCategoriaUseCase
+    public interface IUpdateProduto
     {
-        Task<Categoria> ExecutarAsync(CategoriaRequestDTO categoria);
+        Task<Produto> ExecutarAsync(int id,ProdutoRequestDTO produtoAtualizar);
     }
 }

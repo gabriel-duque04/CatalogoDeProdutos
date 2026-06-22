@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Application.DTOs.Responses;
+using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace Application.Ports.PortsUseCases.Produtos
 {
-    public interface IDeleteProdutoUseCase
+    public interface IGetProdutoById
     {
-        Task<bool> ExecutarAsync(int id);
+        Task<Produto> ExecutarAsync(int id);
     }
 }

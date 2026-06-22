@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace Application.UseCases.Categorias
 {
-    public class CreateCategoriaUseCase : ICreateCategoriaUseCase
+    public class CreateCategoria : ICreateCategoria
     {
         private readonly ICategoriaRepository _categoriaRepository;
 
-        public CreateCategoriaUseCase(ICategoriaRepository categoriaRepository)
+        public CreateCategoria(ICategoriaRepository categoriaRepository)
         {
             _categoriaRepository = categoriaRepository;
         }

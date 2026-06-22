@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Application.UseCases.Produtos
 {
-    public class CreateProdutoUseCase : ICreateProdutoUseCase
+    public class CreateProduto : ICreateProduto
     {
 
         private readonly IProdutoRepository _produtoRepository;
@@ -18,7 +18,7 @@ namespace Application.UseCases.Produtos
         private readonly ICategoriaRepository _categoriaRepository;
 
 
-        public CreateProdutoUseCase(IProdutoRepository produtoRepository, ICategoriaRepository categoriaRepository)
+        public CreateProduto(IProdutoRepository produtoRepository, ICategoriaRepository categoriaRepository)
         {
             _produtoRepository = produtoRepository;
             _categoriaRepository = categoriaRepository;

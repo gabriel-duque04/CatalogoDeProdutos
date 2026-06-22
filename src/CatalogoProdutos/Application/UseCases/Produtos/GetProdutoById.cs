@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace Application.UseCases.Produtos
 {
-    public class GetProdutoByIdUseCase : IGetProdutoByIdUseCase
+    public class GetProdutoById : IGetProdutoById
     {
         private readonly IProdutoRepository _produtoRepository;
 
-        public GetProdutoByIdUseCase(IProdutoRepository produtoRepository)
+        public GetProdutoById(IProdutoRepository produtoRepository)
         {
             _produtoRepository = produtoRepository;
         }

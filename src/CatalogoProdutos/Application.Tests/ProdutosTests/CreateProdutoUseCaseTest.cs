@@ -16,13 +16,13 @@ namespace Application.Tests.ProdutosTests
     {
         private readonly Mock<IProdutoRepository> _produtoRepoMock;
         private readonly Mock<ICategoriaRepository> _categoriaRepoMock;
-        private readonly CreateProdutoUseCase _useCase;
+        private readonly CreateProduto _useCase;
 
         public CreateProdutoUseCaseTest()
         {
             this._produtoRepoMock = new Mock<IProdutoRepository>();
             this._categoriaRepoMock = new Mock<ICategoriaRepository>();
-            this._useCase = new CreateProdutoUseCase(_produtoRepoMock.Object, _categoriaRepoMock.Object);
+            this._useCase = new CreateProduto(_produtoRepoMock.Object, _categoriaRepoMock.Object);
         }
 
         [Fact]

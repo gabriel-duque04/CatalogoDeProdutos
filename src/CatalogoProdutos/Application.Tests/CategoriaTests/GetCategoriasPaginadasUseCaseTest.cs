@@ -16,12 +16,12 @@ namespace Application.Tests.CategoriaTests
     public class GetCategoriasPaginadasUseCaseTest
     {
         private readonly Mock<ICategoriaRepository> _categoriaRepoMock;
-        private readonly GetCategoriasPaginadasUseCase _useCase;
+        private readonly GetCategoriasPaginadas _useCase;
 
         public GetCategoriasPaginadasUseCaseTest()
         {
             _categoriaRepoMock = new Mock<ICategoriaRepository>();
-            _useCase = new GetCategoriasPaginadasUseCase(_categoriaRepoMock.Object);
+            _useCase = new GetCategoriasPaginadas(_categoriaRepoMock.Object);
         }
 
         [Fact]

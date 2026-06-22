@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Application.DTOs.Requests;
+using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace Application.Ports.PortsUseCases.Categorias
 {
-    public interface IGetCategoriasPaginadasUsecase
+    public interface ICreateCategoria
     {
-        Task<IEnumerable<Categoria>> ExecutarAsync(int pagina, int tamanhoPagina);
+        Task<Categoria> ExecutarAsync(CategoriaRequestDTO categoria);
     }
 }

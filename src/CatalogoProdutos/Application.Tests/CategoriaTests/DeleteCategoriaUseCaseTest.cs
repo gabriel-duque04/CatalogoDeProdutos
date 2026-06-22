@@ -10,12 +10,12 @@ namespace Application.Tests.CategoriaTests;
 public class DeleteCategoriaUseCaseTest
 {
     private readonly Mock<ICategoriaRepository> _categoriaRepoMock;
-    private readonly DeleteCategoriaUseCase _useCase;
+    private readonly DeleteCategoria _useCase;
 
     public DeleteCategoriaUseCaseTest()
     {
         _categoriaRepoMock = new Mock<ICategoriaRepository>();
-        _useCase = new DeleteCategoriaUseCase(_categoriaRepoMock.Object);
+        _useCase = new DeleteCategoria(_categoriaRepoMock.Object);
     }
 
     [Fact]

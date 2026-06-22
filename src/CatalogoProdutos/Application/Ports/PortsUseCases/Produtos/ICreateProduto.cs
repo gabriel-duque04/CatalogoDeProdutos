@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Application.Ports.PortsUseCases.Produtos
 {
-    public interface ICreateProdutoUseCase
+    public interface ICreateProduto
     {
         Task<Produto> ExecutarAsync(ProdutoRequestDTO produto);
     }

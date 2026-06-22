@@ -1,5 +1,4 @@
-﻿using Application.DTOs.Requests;
-using Domain.Entities;
+﻿using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Application.Ports.PortsUseCases.Categorias
 {
-    public interface IDeleteCategoriaUseCase
+    public interface IGetCategoriasPaginadas
     {
-        Task<bool> ExecutarAsync(int id);
+        Task<IEnumerable<Categoria>> ExecutarAsync(int pagina, int tamanhoPagina);
     }
 }

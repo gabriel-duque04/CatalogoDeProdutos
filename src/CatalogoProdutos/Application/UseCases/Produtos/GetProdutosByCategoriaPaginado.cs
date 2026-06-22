@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace Application.UseCases.Produtos
 {
-    public class GetProdutosByCategoriaPaginadoUseCase : IGetProdutosByCategoriaPaginadoUseCase
+    public class GetProdutosByCategoriaPaginado : IGetProdutosByCategoriaPaginadoUseCase
     {
         private readonly IProdutoRepository _produtoRepository;
         private readonly ICategoriaRepository _categoriaRepository;
 
-        public GetProdutosByCategoriaPaginadoUseCase(IProdutoRepository produtoRepository, ICategoriaRepository categoriaRepository)
+        public GetProdutosByCategoriaPaginado(IProdutoRepository produtoRepository, ICategoriaRepository categoriaRepository)
         {
             _produtoRepository = produtoRepository;
             _categoriaRepository = categoriaRepository;

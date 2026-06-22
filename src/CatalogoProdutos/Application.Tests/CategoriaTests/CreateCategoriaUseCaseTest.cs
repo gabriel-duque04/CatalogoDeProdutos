@@ -16,12 +16,12 @@ namespace Application.Tests.CategoriaTests
     public class CreateCategoriaUseCaseTest
     {
         private readonly Mock<ICategoriaRepository> _categoriaRepoMock;
-        private readonly CreateCategoriaUseCase _useCase;
+        private readonly CreateCategoria _useCase;
 
         public CreateCategoriaUseCaseTest()
         {
             _categoriaRepoMock = new Mock<ICategoriaRepository>();
-            _useCase = new CreateCategoriaUseCase(_categoriaRepoMock.Object);
+            _useCase = new CreateCategoria(_categoriaRepoMock.Object);
         }
 
         [Fact]

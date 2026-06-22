@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace Application.UseCases.Produtos
 {
-    public class UpdateProdutoUseCase : IUpdateProdutoUseCase
+    public class UpdateProduto : IUpdateProduto
     {
         private readonly IProdutoRepository _produtoRepository;
         private readonly ICategoriaRepository _categoriaRepository;
 
-        public UpdateProdutoUseCase(IProdutoRepository produtoRepository, ICategoriaRepository categoriaRepository)
+        public UpdateProduto(IProdutoRepository produtoRepository, ICategoriaRepository categoriaRepository)
         {
             _produtoRepository = produtoRepository;
             _categoriaRepository = categoriaRepository;

@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace Application.UseCases.Categorias
 {
-    public class DeleteCategoriaUseCase : IDeleteCategoriaUseCase
+    public class DeleteCategoria : IDeleteCategoria
     {
         private readonly ICategoriaRepository _categoriaRepository;
 
-        public DeleteCategoriaUseCase(ICategoriaRepository categoriaRepository)
+        public DeleteCategoria(ICategoriaRepository categoriaRepository)
         {
             _categoriaRepository = categoriaRepository;
         }

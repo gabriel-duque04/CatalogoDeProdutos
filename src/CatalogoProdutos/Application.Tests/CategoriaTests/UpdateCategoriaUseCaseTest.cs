@@ -11,12 +11,12 @@ namespace Application.Tests.CategoriaTests;
 public class UpdateCategoriaUseCaseTest
 {
     private readonly Mock<ICategoriaRepository> _categoriaRepoMock;
-    private readonly UpdateCategoriaUseCase _useCase;
+    private readonly UpdateCategoria _useCase;
 
     public UpdateCategoriaUseCaseTest()
     {
         _categoriaRepoMock = new Mock<ICategoriaRepository>();
-        _useCase = new UpdateCategoriaUseCase(_categoriaRepoMock.Object);
+        _useCase = new UpdateCategoria(_categoriaRepoMock.Object);
     }
 
     [Fact]

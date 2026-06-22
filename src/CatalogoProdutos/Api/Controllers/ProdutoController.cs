@@ -7,19 +7,19 @@ namespace Api.Controllers
     [Route("api/[controller]")]
     public class ProdutoController : ControllerBase
     {
-        private readonly ICreateProdutoUseCase _createProdutoUseCase;
-        private readonly IDeleteProdutoUseCase _deleteProdutoUseCase;
-        private readonly IGetProdutosPaginadoUseCase _getProdutosPaginadoUseCase;
-        private readonly IGetProdutoByIdUseCase _getProdutoByIdUseCase;
+        private readonly ICreateProduto _createProdutoUseCase;
+        private readonly IDeleteProduto _deleteProdutoUseCase;
+        private readonly IGetProdutosPaginado _getProdutosPaginadoUseCase;
+        private readonly IGetProdutoById _getProdutoByIdUseCase;
         private readonly IGetProdutosByCategoriaPaginadoUseCase _getProdutosByCategoriaPaginadoUseCase;
-        private readonly IUpdateProdutoUseCase _updateProdutoUseCase;
+        private readonly IUpdateProduto _updateProdutoUseCase;
 
-        public ProdutoController(ICreateProdutoUseCase createProdutoUseCase,
-             IDeleteProdutoUseCase deleteProdutoUseCase,
-             IGetProdutosPaginadoUseCase getProdutosPaginadoUseCase,
-             IGetProdutoByIdUseCase getProdutoByIdUseCase,
+        public ProdutoController(ICreateProduto createProdutoUseCase,
+             IDeleteProduto deleteProdutoUseCase,
+             IGetProdutosPaginado getProdutosPaginadoUseCase,
+             IGetProdutoById getProdutoByIdUseCase,
              IGetProdutosByCategoriaPaginadoUseCase getProdutosByCategoriaPaginadoUseCase,
-             IUpdateProdutoUseCase updateProdutoUseCase)
+             IUpdateProduto updateProdutoUseCase)
         {
             this._createProdutoUseCase = createProdutoUseCase;
             this._deleteProdutoUseCase = deleteProdutoUseCase;

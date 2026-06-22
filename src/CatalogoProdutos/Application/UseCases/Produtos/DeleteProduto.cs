@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Application.UseCases.Produtos
 {
-    public class DeleteProdutoUseCase : IDeleteProdutoUseCase
+    public class DeleteProduto : IDeleteProduto
     {
         private readonly IProdutoRepository _produtoRepository;
 
-        public DeleteProdutoUseCase(IProdutoRepository produtoRepository)
+        public DeleteProduto(IProdutoRepository produtoRepository)
         {
             _produtoRepository = produtoRepository;
         }

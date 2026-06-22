@@ -15,13 +15,13 @@ namespace Application.Tests.ProdutosTests
     {
         private readonly Mock<IProdutoRepository> _produtoRepoMock;
         private readonly Mock<ICategoriaRepository> _categoriaRepoMock;
-        private readonly UpdateProdutoUseCase _useCase;
+        private readonly UpdateProduto _useCase;
 
         public UpdateProdutoUseCaseTest()
         {
             _produtoRepoMock = new Mock<IProdutoRepository>();
             _categoriaRepoMock = new Mock<ICategoriaRepository>();
-            _useCase = new UpdateProdutoUseCase(_produtoRepoMock.Object, _categoriaRepoMock.Object);
+            _useCase = new UpdateProduto(_produtoRepoMock.Object, _categoriaRepoMock.Object);
         }
 
         [Fact]

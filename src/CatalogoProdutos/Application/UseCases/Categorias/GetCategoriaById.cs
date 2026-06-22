@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace Application.UseCases.Categorias
 {
-    public class GetCategoriaByIdUseCase : IGetCategoriaByIdUseCase
+    public class GetCategoriaById : IGetCategoriaById
     {
         private readonly ICategoriaRepository _categoriaRepository;
 
-        public GetCategoriaByIdUseCase(ICategoriaRepository categoriaRepository)
+        public GetCategoriaById(ICategoriaRepository categoriaRepository)
         {
             _categoriaRepository = categoriaRepository;
         }

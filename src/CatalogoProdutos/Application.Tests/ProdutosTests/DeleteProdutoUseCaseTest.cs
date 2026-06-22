@@ -14,12 +14,12 @@ namespace Application.Tests.ProdutosTests
     public class DeleteProdutoUseCaseTest
     {
         private readonly Mock<IProdutoRepository> _produtoRepoMock;
-        private readonly DeleteProdutoUseCase _useCase;
+        private readonly DeleteProduto _useCase;
 
         public DeleteProdutoUseCaseTest()
         {
             _produtoRepoMock = new Mock<IProdutoRepository>();
-            _useCase = new DeleteProdutoUseCase(_produtoRepoMock.Object);
+            _useCase = new DeleteProduto(_produtoRepoMock.Object);
         }
 
         [Fact]
