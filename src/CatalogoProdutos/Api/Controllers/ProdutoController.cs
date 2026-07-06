@@ -1,4 +1,5 @@
 ﻿using Application.DTOs.Requests;
+using Application.Handlers;
 using Application.Ports.PortsUseCases.Produtos;
 using Microsoft.AspNetCore.Mvc;
 namespace Api.Controllers
@@ -7,26 +8,12 @@ namespace Api.Controllers
     [Route("api/[controller]")]
     public class ProdutoController : ControllerBase
     {
-        private readonly ICreateProduto _createProdutoUseCase;
-        private readonly IDeleteProduto _deleteProdutoUseCase;
-        private readonly IGetProdutosPaginado _getProdutosPaginadoUseCase;
-        private readonly IGetProdutoById _getProdutoByIdUseCase;
-        private readonly IGetProdutosByCategoriaPaginadoUseCase _getProdutosByCategoriaPaginadoUseCase;
-        private readonly IUpdateProduto _updateProdutoUseCase;
+        private readonly ProdutoHandler _produtoHandler;
+        
 
-        public ProdutoController(ICreateProduto createProdutoUseCase,
-             IDeleteProduto deleteProdutoUseCase,
-             IGetProdutosPaginado getProdutosPaginadoUseCase,
-             IGetProdutoById getProdutoByIdUseCase,
-             IGetProdutosByCategoriaPaginadoUseCase getProdutosByCategoriaPaginadoUseCase,
-             IUpdateProduto updateProdutoUseCase)
+        public ProdutoController(ProdutoHandler produtoHandler)
         {
-            this._createProdutoUseCase = createProdutoUseCase;
-            this._deleteProdutoUseCase = deleteProdutoUseCase;
-            this._getProdutosPaginadoUseCase = getProdutosPaginadoUseCase;
-            this._getProdutoByIdUseCase = getProdutoByIdUseCase;
-            this._getProdutosByCategoriaPaginadoUseCase = getProdutosByCategoriaPaginadoUseCase;
-            this._updateProdutoUseCase = updateProdutoUseCase;
+            this._produtoHandler = produtoHandler;
         }
 
         /// <summary>
@@ -37,18 +24,9 @@ namespace Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateProduto(ProdutoRequestDTO produto)
         {
-            try 
-            {
-                var produtoCriado = await _createProdutoUseCase.ExecutarAsync(produto);
+            var produtoCriado = await _produtoHandler.CreateProduto(produto);
 
-                if (produtoCriado == null)
-                    return BadRequest("Objeto nulo");
-
-                return Ok(produtoCriado);
-            }catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            return Ok(produtoCriado);
         }
 
         
@@ -60,17 +38,11 @@ namespace Api.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduto(int id)
         {
-            try
-            {
-                return Ok(await _deleteProdutoUseCase.ExecutarAsync(id));
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            return Ok(await _produtoHandler.DeleteProduto(id));
+
         }
 
-        
+
         /// <summary>
         /// Método de get para todos produtos
         /// </summary>
@@ -78,14 +50,7 @@ namespace Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetProdutosPaginado([FromQuery] int pagina = 1, [FromQuery] int tamanhoPagina = 10)
         {
-            try
-            {
-                return Ok(await _getProdutosPaginadoUseCase.ExecutarAsync(pagina, tamanhoPagina));
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
+            return Ok(await _produtoHandler.GetProdutosPaginado(pagina, tamanhoPagina));
         }
 
         
@@ -97,14 +62,7 @@ namespace Api.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProdutoById(int id)
         {
-            try
-            {
-                return Ok(await _getProdutoByIdUseCase.ExecutarAsync(id));
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
+            return Ok(await _produtoHandler.GetProdutoById(id));
         }
         
         
@@ -116,14 +74,7 @@ namespace Api.Controllers
         [HttpGet("porCategoria/{categoriaId}")]
         public async Task<IActionResult> GetProdutosByCategoria(int categoriaId, [FromQuery] int pagina = 1, [FromQuery] int tamanhoPagina = 10)
         {
-            try
-            {
-                return Ok(await _getProdutosByCategoriaPaginadoUseCase.ExecutarAsync(categoriaId,pagina, tamanhoPagina));
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
+            return Ok(await _produtoHandler.GetProdutosByCategoria(categoriaId, pagina, tamanhoPagina));
         }
         
         
@@ -136,14 +87,7 @@ namespace Api.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateProduto(int id, ProdutoRequestDTO produtoAtualizar)
         {
-            try
-            {
-                return Ok(await _updateProdutoUseCase.ExecutarAsync(id, produtoAtualizar));
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
+            return Ok(await _produtoHandler.UpdateProduto(id, produtoAtualizar));
         }
         
     }

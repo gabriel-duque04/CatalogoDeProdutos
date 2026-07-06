@@ -1,4 +1,5 @@
 ﻿using Application.DTOs.Requests;
+using Application.Handlers;
 using Application.Ports.PortsUseCases.Categorias;
 using Application.UseCases.Categorias;
 using Microsoft.AspNetCore.Mvc;
@@ -8,23 +9,11 @@ namespace Api.Controllers
     [Route("api/[controller]")]
     public class CategoriaController : ControllerBase
     {
-        private readonly ICreateCategoria _createCategoriaUseCase;
-        private readonly IDeleteCategoria _deleteCategoriaUseCase;
-        private readonly IUpdateCategoriaUse _updateCategoriaUseCase;
-        private readonly IGetCategoriaById _getCategoriaByIdUseCase;
-        private readonly IGetCategoriasPaginadas _geCategoriasPaginadasUsecase;
-
-        public CategoriaController(ICreateCategoria createCategoriaUseCase,
-            IDeleteCategoria deleteCategoriaUseCase,
-            IUpdateCategoriaUse updateCategoriaUseCase,
-            IGetCategoriasPaginadas geCategoriasPaginadasUsecase,
-            IGetCategoriaById getCategoriaByIdUseCase)
+        private readonly CategoriaHandler _categoriaHandler;
+        
+        public CategoriaController(CategoriaHandler categoriaHandler)
         {
-            _createCategoriaUseCase = createCategoriaUseCase;
-            _deleteCategoriaUseCase = deleteCategoriaUseCase;
-            _updateCategoriaUseCase = updateCategoriaUseCase;
-            _geCategoriasPaginadasUsecase = geCategoriasPaginadasUsecase;
-            _getCategoriaByIdUseCase = getCategoriaByIdUseCase;
+            this._categoriaHandler = categoriaHandler;
         }
 
         /// <summary>
@@ -34,10 +23,7 @@ namespace Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetCategoriaPaginadas([FromQuery] int pagina = 1, [FromQuery] int tamanhoPagina = 10)
         {
-            if (pagina <= 0) pagina = 1;
-            if (tamanhoPagina <= 0) tamanhoPagina = 10;
-
-            var categorias = await _geCategoriasPaginadasUsecase.ExecutarAsync(pagina, tamanhoPagina);
+            var categorias = await _categoriaHandler.GetCategoriaPaginadas(pagina, tamanhoPagina);
 
             return Ok(categorias);
         }
@@ -51,20 +37,8 @@ namespace Api.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCategoriaById(int id)
         {
-            try
-            {
-                var categoria = await _getCategoriaByIdUseCase.ExecutarAsync(id);
-
-                if (categoria == null)
-                    return BadRequest("Categoria não encontrada");
-
-                return Ok(categoria);
-
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            var categoria = await _categoriaHandler.GetCategoriaById(id);
+            return Ok(categoria);
         }
 
 
@@ -76,21 +50,9 @@ namespace Api.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCategoria(int id)
         {
-            try
-            {
+            var foiDeletado = await _categoriaHandler.DeleteCategoria(id);
 
-                var foiDeletado = await _deleteCategoriaUseCase.ExecutarAsync(id);
-
-                if (!foiDeletado)
-                    return BadRequest("Categoria não encontrada");
-                else
-                    return Ok();
-
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            return Ok();
         }
 
         /// <summary>
@@ -101,20 +63,9 @@ namespace Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateCategoria([FromBody] CategoriaRequestDTO novaCategoria)
         {
+            var categoriaCriada = await _categoriaHandler.CreateCategoria(novaCategoria);
 
-            try
-            {
-                var categoriaCriada = await _createCategoriaUseCase.ExecutarAsync(novaCategoria);
-
-                if (categoriaCriada == null) { return BadRequest("Objeto nulo"); }
-
-                return Ok(categoriaCriada);
-
-            }
-            catch(Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            return Ok(categoriaCriada);
         }
 
         /// <summary>
@@ -126,21 +77,10 @@ namespace Api.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateCategoria(int id, [FromBody] CategoriaRequestDTO categoriaAtualizada)
         {
+            var posAtualizacao = await _categoriaHandler.UpdateCategoria(id, categoriaAtualizada);
+
+            return Ok(posAtualizacao);
             
-            try
-            {
-                var posAtualizacao = await _updateCategoriaUseCase.ExecutarAsync(id, categoriaAtualizada);
-
-                if (posAtualizacao == null)
-                    return BadRequest("Categoria não encontrada");
-
-                return Ok(posAtualizacao);
-
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
         }
     }
 }
