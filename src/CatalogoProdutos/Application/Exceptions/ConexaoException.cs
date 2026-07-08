@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Application.Exceptions
 {
-    internal class ConexaoException
+    public class ConexaoException : CatalogoException
     {
+        public ConexaoException() : base("Erro na conexão com o banco de dados")
+        {
+
+        }
     }
 }
