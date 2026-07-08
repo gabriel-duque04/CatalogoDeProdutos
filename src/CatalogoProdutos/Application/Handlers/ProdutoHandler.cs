@@ -1,4 +1,5 @@
 ﻿using Application.DTOs.Requests;
+using Application.Exceptions.Produtos;
 using Application.Ports.PortsUseCases.Produtos;
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -46,7 +47,7 @@ namespace Application.Handlers
             var produtoCriado = await _createProdutoUseCase.ExecutarAsync(produto);
 
             if (produtoCriado == null)
-                throw new ArgumentException();
+                throw new ProdutoNaoCriado();
 
             return produtoCriado;
         }
@@ -59,7 +60,7 @@ namespace Application.Handlers
         /// <returns></returns>
         public async Task<bool> DeleteProduto(int id)
         {
-            return await _deleteProdutoUseCase.ExecutarAsync(id) == true ? true : throw new ArgumentException();
+            return await _deleteProdutoUseCase.ExecutarAsync(id) == true ? true : throw new ProdutoNaoDeletado();
         }
 
         /// <summary>
@@ -73,7 +74,7 @@ namespace Application.Handlers
         {
             var produtos = await _getProdutosPaginadoUseCase.ExecutarAsync(pagina, tamanhoPagina);
             if(produtos == null)
-                throw new ArgumentException();
+                throw new ProdutoNaoEncontrado();
             else
                 return produtos;
         }
@@ -90,7 +91,7 @@ namespace Application.Handlers
             var produto = await _getProdutoByIdUseCase.ExecutarAsync(id);
 
             if(produto == null)
-                throw new ArgumentException();
+                throw new ProdutoNaoEncontrado();
             else
                 return produto;
         }
@@ -108,7 +109,7 @@ namespace Application.Handlers
             var produtos = await _getProdutosByCategoriaPaginadoUseCase.ExecutarAsync(categoriaId, pagina, tamanhoPagina);
 
             if( produtos == null)
-                throw new ArgumentException();
+                throw new ProdutosPorCategoria();
             else
                 return produtos;
         }
@@ -127,7 +128,7 @@ namespace Application.Handlers
             
             
             if (produto == null)
-                throw new ArgumentException();
+                throw new ProdutoNaoAtualizado();
             else
                 return produto;
         }
