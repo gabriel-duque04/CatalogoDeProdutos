@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Application.Exceptions.Categorias
 {
-    public class CategoriaNaoCriadaException : CatalogoException
+    public class CategoriaNaoCriada : CatalogoException
     {
-        public CategoriaNaoCriadaException(string message) : base(message)
+        public CategoriaNaoCriada(string message) : base(message)
         {
 
         }
 
-        public CategoriaNaoCriadaException() : base("Categoria não criada")
+        public CategoriaNaoCriada() : base("Categoria não criada")
         {
 
         }

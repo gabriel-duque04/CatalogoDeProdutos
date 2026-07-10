@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Application.Exceptions.Categorias
 {
-    public class CategoriaNaoAtualizadaException : CatalogoException
+    public class CategoriaNaoAtualizada : CatalogoException
     {
-        public CategoriaNaoAtualizadaException(string message) : base(message)
+        public CategoriaNaoAtualizada(string message) : base(message)
         {
 
         }
 
-        public CategoriaNaoAtualizadaException() : base("Nâo foi possível atualizar a categoria, verifique os campos")
+        public CategoriaNaoAtualizada() : base("Nâo foi possível atualizar a categoria, verifique os campos")
         {
 
         }

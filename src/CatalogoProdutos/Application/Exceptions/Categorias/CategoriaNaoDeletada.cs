@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Application.Exceptions.Categorias
 {
-    public class CategoriaNaoDeletadaException : CatalogoException
+    public class CategoriaNaoDeletada : CatalogoException
     {
-        public CategoriaNaoDeletadaException(string message) : base(message)
+        public CategoriaNaoDeletada(string message) : base(message)
         {
 
         }
 
-        public CategoriaNaoDeletadaException () : base("Erro ao deletar a categoria")
+        public CategoriaNaoDeletada () : base("Erro ao deletar a categoria")
         {
 
         }
