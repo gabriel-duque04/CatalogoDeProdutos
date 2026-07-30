@@ -2,6 +2,7 @@
 using Application.Ports.PortsUseCases;
 using Application.Ports.PortsUseCases.Categorias;
 using Domain.Entities;
+using Application.Exceptions.Categorias;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace Application.UseCases.Categorias
         {
             var categoria = await _categoriaRepository.GetCategoriaByIdAsync(id);
             //Pega os produtos por categoria
-            return categoria == null ? throw new Exception("Categoria não encontrada") : categoria;
+            return categoria == null ? throw new CategoriaNaoEncontrada("Categoria não encontrada") : categoria;
         }
     }
 }

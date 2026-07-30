@@ -2,6 +2,7 @@
 using Application.Ports.PortsRepositories;
 using Application.Ports.PortsUseCases.Produtos;
 using Domain.Entities;
+using Application.Exceptions.Produtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,19 +27,19 @@ namespace Application.UseCases.Produtos
 
             //validações
             if (await _produtoRepository.GetProdutoByIdAsync(id) == null)
-                throw new Exception("Produto inexistente");
+                throw new ProdutoNaoAtualizado("Produto inexistente");
 
             if (String.IsNullOrEmpty(produtoAtualizar.Nome))
-                throw new Exception("Nome é necessário;");
+                throw new ProdutoNaoAtualizado("Nome do produto é necessário;");
 
             if (String.IsNullOrEmpty(produtoAtualizar.Descricao))
-                throw new Exception("Descriçao é necessária");
+                throw new ProdutoNaoAtualizado("Descriçao do produto é necessária");
 
             if (produtoAtualizar.Preco <= 0)
-                throw new Exception("Preço inválido");
+                throw new ProdutoNaoAtualizado("Preço inválido");
 
             if (await _categoriaRepository.GetCategoriaByIdAsync(produtoAtualizar.CategoriaID) == null)
-                throw new Exception("Categoria não existente");
+                throw new ProdutoNaoAtualizado("Categoria não existente");
 
             Produto produto = new Produto(produtoAtualizar.Nome, produtoAtualizar.Descricao, produtoAtualizar.Preco, produtoAtualizar.CategoriaID);
 

@@ -2,11 +2,13 @@
 using Application.Ports.PortsRepositories;
 using Application.Ports.PortsUseCases.Categorias;
 using Domain.Entities;
+using Application.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Application.Exceptions.Categorias;
 
 namespace Application.UseCases.Categorias
 {
@@ -25,14 +27,14 @@ namespace Application.UseCases.Categorias
 
             //Validações
             if (String.IsNullOrEmpty(categoria.Nome))
-                throw new Exception("Nome da é necessário;");
+                throw new CategoriaNaoAtualizada("Nome da categoria é necessário;");
 
             if (String.IsNullOrEmpty(categoria.Descricao))
-                throw new Exception("Descriçao é necessária");
+                throw new CategoriaNaoAtualizada("Descriçao da categoria é necessária");
 
             var existe = await _categoriaRepository.GetCategoriaByIdAsync(id);
             if (existe == null)
-                throw new Exception("Categoria inexistente");
+                throw new CategoriaNaoAtualizada("Categoria inexistente");
 
 
 

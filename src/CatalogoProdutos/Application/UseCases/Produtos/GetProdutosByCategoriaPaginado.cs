@@ -1,6 +1,7 @@
 ﻿using Application.Ports.PortsRepositories;
 using Application.Ports.PortsUseCases.Produtos;
 using Domain.Entities;
+using Application.Exceptions.Produtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace Application.UseCases.Produtos
         public async Task<IEnumerable<Produto>> ExecutarAsync(int categoriaID, int pagina, int tamanhoPagina)
         {
             if (await _categoriaRepository.GetCategoriaByIdAsync(categoriaID) == null)
-                throw new Exception("Categoria inexistente");
+                throw new ProdutosPorCategoria("Categoria inexistente");
 
 
             return await _produtoRepository.GetProdutosByCategoriaPaginadoAsync(categoriaID, pagina, tamanhoPagina);

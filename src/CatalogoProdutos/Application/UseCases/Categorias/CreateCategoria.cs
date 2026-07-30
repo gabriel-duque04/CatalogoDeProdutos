@@ -1,5 +1,6 @@
 ﻿using Application;
 using Application.DTOs.Requests;
+using Application.Exceptions.Categorias;
 using Application.Ports.PortsRepositories;
 using Application.Ports.PortsUseCases.Categorias;
 using Domain.Entities;
@@ -25,10 +26,10 @@ namespace Application.UseCases.Categorias
 
             //Validações
             if (String.IsNullOrEmpty(categoria.Nome))
-                throw new Exception("Nome da é necessário;");
+                throw new CategoriaNaoCriada("Nome da categoria é necessário");
 
             if (String.IsNullOrEmpty(categoria.Descricao))
-                throw new Exception("Descriçao é necessária");
+                throw new CategoriaNaoCriada("Descrição da categoria é necessária");
 
             //cria a entidade
             Categoria novaCategoria = new Categoria(categoria.Nome, categoria.Descricao);
