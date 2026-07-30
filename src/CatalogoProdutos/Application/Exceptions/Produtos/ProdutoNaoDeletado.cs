@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Application.Exceptions.Produtos
 {
-    public class ProdutoNaoDeletadoException : CatalogoException
+    public class ProdutoNaoDeletado : CatalogoException
     {
-        public ProdutoNaoDeletadoException(string message) : base(message)
+        public ProdutoNaoDeletado(string message) : base(message)
         {
 
         }
 
-        public ProdutoNaoDeletadoException() : base("Ocorreu um erro ao deletar o produto")
+        public ProdutoNaoDeletado() : base("Ocorreu um erro ao deletar o produto")
         {
 
         }

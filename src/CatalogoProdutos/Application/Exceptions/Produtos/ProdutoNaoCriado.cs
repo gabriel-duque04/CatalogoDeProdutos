@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Application.Exceptions.Produtos
 {
-    public class ProdutoNaoCriadoException : CatalogoException
+    public class ProdutoNaoCriado : CatalogoException
     {
-        public ProdutoNaoCriadoException(string message) : base(message)
+        public ProdutoNaoCriado(string message) : base(message)
         {
         }
 
-        public ProdutoNaoCriadoException() : base("Erro ao criar o produto")
+        public ProdutoNaoCriado() : base("Erro ao criar o produto")
         {
         }
     }

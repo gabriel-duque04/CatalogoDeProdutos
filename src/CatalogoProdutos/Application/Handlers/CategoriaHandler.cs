@@ -1,4 +1,5 @@
 ﻿using Application.DTOs.Requests;
+using Application.Exceptions.Categorias;
 using Application.Ports.PortsUseCases.Categorias;
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -61,7 +62,7 @@ namespace Application.Handlers
             var categoria = await _getCategoriaByIdUseCase.ExecutarAsync(id);
 
             if (categoria == null)
-                throw new ArgumentException();
+                throw new CategoriaNaoEncontrada();
 
             return categoria;
         }
@@ -78,7 +79,7 @@ namespace Application.Handlers
             var foiDeletado = await _deleteCategoriaUseCase.ExecutarAsync(id);
 
             if (!foiDeletado)
-                throw new InvalidOperationException();
+                throw new CategoriaNaoDeletada();
             else
                 return true;
         }
@@ -94,7 +95,7 @@ namespace Application.Handlers
         {
             var categoriaCriada = await _createCategoriaUseCase.ExecutarAsync(novaCategoria);
 
-            if (categoriaCriada == null) { throw new ArgumentException(); }
+            if (categoriaCriada == null) { throw new CategoriaNaoCriada(); }
 
             return categoriaCriada;
         }
@@ -113,7 +114,7 @@ namespace Application.Handlers
             var posAtualizacao = await _updateCategoriaUseCase.ExecutarAsync(id, categoriaAtualizada);
 
             if (posAtualizacao == null)
-                throw new ArgumentException();
+                throw new CategoriaNaoAtualizada();
 
             return posAtualizacao;
         }

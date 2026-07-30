@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Application.Exceptions.Produtos
 {
-    public class ProdutosPaginadosException : CatalogoException
+    public class ProdutosPaginados : CatalogoException
     {
-        public ProdutosPaginadosException(string message) : base(message)
+        public ProdutosPaginados(string message) : base(message)
         {
 
         }
 
-        public ProdutosPaginadosException() : base("Erro ao obter os produtos da lista")
+        public ProdutosPaginados() : base("Erro ao obter os produtos da lista")
         {
 
         }

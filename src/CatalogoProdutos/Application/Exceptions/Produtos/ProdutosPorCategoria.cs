@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Application.Exceptions.Produtos
 {
-    public class ProdutosPorCategoriaExeption : CatalogoException
+    public class ProdutosPorCategoria : CatalogoException
     {
-        public ProdutosPorCategoriaExeption(string message) : base(message)
+        public ProdutosPorCategoria(string message) : base(message)
         {
 
         }
 
-        public ProdutosPorCategoriaExeption() : base("Produtos não encontrados na categoria")
+        public ProdutosPorCategoria() : base("Produtos não encontrados na categoria")
         {
 
         }

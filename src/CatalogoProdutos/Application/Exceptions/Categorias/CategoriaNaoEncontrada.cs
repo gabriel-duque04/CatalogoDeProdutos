@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Application.Exceptions.Categorias
 {
-    public class CategoriaNaoEncontradaException : CatalogoException
+    public class CategoriaNaoEncontrada : CatalogoException
     {
-        public CategoriaNaoEncontradaException(string message) : base(message)
+        public CategoriaNaoEncontrada(string message) : base(message)
         {
 
         }
 
-        public CategoriaNaoEncontradaException() : base("A categoria não foi encontrada no sistema")
+        public CategoriaNaoEncontrada() : base("A categoria não foi encontrada no sistema")
         {
 
         }
