@@ -1,6 +1,7 @@
 ﻿using Application.Ports.PortsRepositories;
 using Application.Ports.PortsUseCases.Categorias;
 using Domain.Entities;
+using Application.Exceptions.Categorias;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlTypes;
@@ -23,7 +24,7 @@ namespace Application.UseCases.Categorias
         {
             var resultado = await _categoriaRepository.GetCategoriasPaginadasAsync(pagina, tamanhoPagina);
 
-            return resultado == null ? throw new Exception("Pagina vazia"):resultado;
+            return resultado == null ? throw new CategoriaNaoEncontrada("Pagina de categorias vazia"):resultado;
         }
     }
 }

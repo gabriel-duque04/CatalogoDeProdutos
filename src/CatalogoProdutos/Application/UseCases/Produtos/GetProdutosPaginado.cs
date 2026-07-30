@@ -2,6 +2,7 @@
 using Application.Ports.PortsRepositories;
 using Application.Ports.PortsUseCases.Produtos;
 using Domain.Entities;
+using Application.Exceptions.Produtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,8 @@ namespace Application.UseCases.Produtos
 
         public async Task<IEnumerable<Produto>> ExecutarAsync(int pagina, int tamanhoPagina)
         {
-            return await _produtoRepository.GetProdutosPaginado(pagina, tamanhoPagina);
+            var produtos = await _produtoRepository.GetProdutosPaginado(pagina, tamanhoPagina);
+            return produtos == null ? throw new ProdutosPaginados("Pagina de produtos vazios") : produtos;
         }
     }
 }

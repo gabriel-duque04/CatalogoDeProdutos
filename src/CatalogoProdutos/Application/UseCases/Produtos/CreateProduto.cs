@@ -1,6 +1,8 @@
 ﻿using Application.DTOs.Requests;
 using Application.Ports.PortsRepositories;
 using Application.Ports.PortsUseCases.Produtos;
+using Application.Exceptions.Produtos;
+using Application.Exceptions.Categorias;
 using Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -28,18 +30,18 @@ namespace Application.UseCases.Produtos
         {
             //Validações
             if (String.IsNullOrEmpty(produto.Nome))
-                throw new Exception("Nome é necessário;");
+                throw new ProdutoNaoCriado("Nome do produto é necessário;");
 
             if (String.IsNullOrEmpty(produto.Descricao))
-                throw new Exception("Descriçao é necessária");
+                throw new ProdutoNaoCriado("Descriçao do produto é necessária");
 
             if (produto.Preco <= 0)
-                throw new Exception("Preço inválido");
+                throw new ProdutoNaoCriado("Preço inválido");
 
 
            
             if (await _categoriaRepository.GetCategoriaByIdAsync(produto.CategoriaID) == null)
-                throw new Exception("Categoria não existente");
+                throw new CategoriaNaoEncontrada("Categoria não existente");
 
             //cria uma nova entidade a partir do dto
             Produto novoProduto = new Produto(produto.Nome, produto.Descricao, produto.Preco, produto.CategoriaID);

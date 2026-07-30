@@ -1,4 +1,5 @@
 ﻿using Application.Ports.PortsRepositories;
+using Application.Exceptions.Categorias;
 using Application.Ports.PortsUseCases;
 using Application.Ports.PortsUseCases.Categorias;
 using Domain.Entities;
@@ -25,7 +26,7 @@ namespace Application.UseCases.Categorias
             var existe = await _categoriaRepository.GetCategoriaByIdAsync(id);
             
             
-            return existe == null ? throw new Exception("Categoria não existe"): await _categoriaRepository.DeleteCategoriaAsync(id);
+            return existe == null ? throw new CategoriaNaoDeletada("Não foi possível deletar a categoria"): await _categoriaRepository.DeleteCategoriaAsync(id);
         }
     }
 }

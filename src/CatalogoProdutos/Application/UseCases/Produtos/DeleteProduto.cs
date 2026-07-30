@@ -1,5 +1,6 @@
 ﻿using Application.Ports.PortsRepositories;
 using Application.Ports.PortsUseCases.Produtos;
+using Application.Exceptions.Produtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace Application.UseCases.Produtos
             //Validações
             var existe = await _produtoRepository.GetProdutoByIdAsync(id);
             if (existe == null)
-                throw new Exception("Produto inexistente");
+                throw new ProdutoNaoDeletado("Produto inexistente");
 
             //deleta o produto
             return await _produtoRepository.DeleteProdutosAsync(id);

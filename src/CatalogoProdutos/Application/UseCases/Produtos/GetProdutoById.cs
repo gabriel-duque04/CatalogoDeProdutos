@@ -1,6 +1,7 @@
 ﻿using Application.Ports.PortsRepositories;
 using Application.Ports.PortsUseCases.Categorias;
 using Application.Ports.PortsUseCases.Produtos;
+using Application.Exceptions.Produtos;
 using Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ namespace Application.UseCases.Produtos
         {
             var produto = await _produtoRepository.GetProdutoByIdAsync(id);
 
-            return produto == null ? throw new Exception("Produto não encontrado") : produto;
+            return produto == null ? throw new ProdutoNaoEncontrado("Produto não encontrado") : produto;
         }
     }
 }
