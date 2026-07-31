@@ -4,7 +4,8 @@ using Application.Ports.PortsUseCases.Produtos;
 using Microsoft.AspNetCore.Mvc;
 namespace Api.Controllers
 {
-    
+    [ApiController]
+    [Route("api/[controller]")]
     public class ProdutoController : CustomControllerBase
     {
         private readonly ProdutoHandler _produtoHandler;
