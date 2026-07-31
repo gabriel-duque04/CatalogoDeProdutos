@@ -6,7 +6,7 @@ namespace Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ProdutoController : ControllerBase
+    public class ProdutoController : CustomControllerBase
     {
         private readonly ProdutoHandler _produtoHandler;
         

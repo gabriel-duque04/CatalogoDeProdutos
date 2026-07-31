@@ -7,7 +7,7 @@ namespace Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CategoriaController : ControllerBase
+    public class CategoriaController : CustomControllerBase
     {
         private readonly CategoriaHandler _categoriaHandler;
         
