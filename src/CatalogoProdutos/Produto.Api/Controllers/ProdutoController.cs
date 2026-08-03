@@ -22,7 +22,7 @@ namespace Api.Controllers
         /// <param name="produto"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> CreateProduto(ProdutoRequestDTO produto)
+        public async Task<IActionResult> CreateProduto([FromBody]ProdutoRequestDTO produto)
         {
             var produtoCriado = await _produtoHandler.CreateProduto(produto);
 
