@@ -7,7 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Refit.HttpClientFactory" Version="14.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Application\Application.csproj" />
+    <ProjectReference Include="..\Categorias.Api\Categorias.Api.csproj" />
+    <ProjectReference Include="..\Produto.Api\Produto.Api.csproj" />
   </ItemGroup>
 
 </Project>
